@@ -1,8 +1,9 @@
 import React, { FC } from "react";
 import * as Icons from "./icons-list";
+import { IconName } from "./model/icon.types";
 
 type IconProps = {
-  iconName: string
+  iconName: IconName
   size?: number
   color?: string
 }

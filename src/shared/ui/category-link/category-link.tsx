@@ -8,7 +8,10 @@ const CategoryLink: FC<CategoryLinkProps> = (props) => {
   const { iconName, link } = props;
 
   return (
-    <NavLink to={link} className={({isActive}) => getLinkClassName(isActive)}>
+    <NavLink
+      to={link}
+      className={({ isActive }) => getLinkClassName(isActive)}
+    >
       <Icon iconName={iconName}></Icon>
     </NavLink>
   );
