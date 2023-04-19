@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 import { Outlet } from "react-router";
 import Icon from "../../shared/icons";
-import {Avatar, Input, CategoryLink} from "../../shared/ui";
+import { Avatar, Input, CategoryLink } from "../../shared/ui";
+import MoreButton from "../../shared/ui/more-button";
 
 const LayoutWrapper: FC = () => {
   return (
@@ -14,14 +15,25 @@ const LayoutWrapper: FC = () => {
           <Input placeholder="Serach Jobs" />
         </div>
         <nav className="flex gap-[30px] ml-[25px] pr-[40px] border-r-[2px]">
-          <CategoryLink link='/' iconName={"Home"}></CategoryLink>
-          <CategoryLink link='/contacts' iconName={"Contacts"}></CategoryLink>
-          <CategoryLink link='/work' iconName={"Work"}></CategoryLink>
-          <CategoryLink link='/messages' iconName={"Message"}></CategoryLink>
-          <CategoryLink link='/notifications' iconName={"Notification"}></CategoryLink>
+          <CategoryLink link="/" iconName={"Home"}></CategoryLink>
+          <CategoryLink link="/contacts" iconName={"Contacts"}></CategoryLink>
+          <CategoryLink link="/work" iconName={"Work"}></CategoryLink>
+          <CategoryLink link="/messages" iconName={"Message"}></CategoryLink>
+          <CategoryLink
+            link="/notifications"
+            iconName={"Notification"}
+          ></CategoryLink>
         </nav>
-        <div>
-          <Avatar borderSize={2} imageSize={2}  image="../src/shared/images/avatars/WawanPurwanto.png"/>
+        <div className="flex items-center ml-[55px] gap-[7px]">
+          <Avatar
+            borderSize={3}
+            imageSize={40}
+            image="images/WawanPurwanto.png"
+          />
+          <p>Wawan Purwanto</p>
+          <div className="flex items-center">
+            <MoreButton></MoreButton>
+          </div>
         </div>
       </div>
       <div className="bg-[#F8F8FA] w-full flex flex-col items-center">

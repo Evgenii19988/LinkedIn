@@ -1,20 +1,12 @@
 import React, { FC } from "react";
-import { getLinkClassName } from "./avatar.styles";
-import { NavLink } from "react-router-dom";
-import Icon from "../../icons";
 import { AvatarProps } from "./avatar.types";
-// import Logo from "../../../../public/images/WawanPurwanto.png";
 
 const Avatar: FC<AvatarProps> = (props) => {
-  const { image } = props;
+  const { image, imageSize, borderSize, borderColor = '#DBE7FF' } = props;
 
   return (
-    <div>
-      <img
-        src="../../../../public/images/WawanPurwanto.png"
-        alt="вы"
-      />
-      1
+    <div style={{padding: `${borderSize}px`}} className={`bg-[${borderColor}] rounded-full`}>
+      <img style={{width: `${imageSize}px`}} className={`w-[${imageSize}px]`} src={image} alt="" />
     </div>
   );
 };
