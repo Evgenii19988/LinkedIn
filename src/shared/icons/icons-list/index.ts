@@ -6,6 +6,8 @@ import Message from "./message";
 import Label from "./label";
 import ArrowBottom from "./arrow-bottom";
 import Search from "./search";
+import Bookmark from "./bookmark";
+import Award from "./award";
 
 export {
   Home,
@@ -16,4 +18,6 @@ export {
   Label,
   ArrowBottom,
   Search,
+  Bookmark,
+  Award,
 };

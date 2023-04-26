@@ -1,10 +1,13 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { Outlet } from "react-router";
 import Icon from "../../shared/icons";
 import { Avatar, Input, CategoryLink } from "../../shared/ui";
 import MoreButton from "../../shared/ui/more-button";
+import { HeaderDropdown } from "../../features/header-dropdown";
 
 const LayoutWrapper: FC = () => {
+  const [isOpenDropdown, setIsOpenDropdown] = useState(false);
+
   return (
     <div className="flex flex-col items-center">
       <div className="max-w-[1260px] w-full px-[15px] flex items-center h-[89px]">
@@ -30,9 +33,14 @@ const LayoutWrapper: FC = () => {
             imageSize={40}
             image="images/WawanPurwanto.png"
           />
-          <p>Wawan Purwanto</p>
+          <p className="text-sm font-medium">Wawan Purwanto</p>
           <div className="flex items-center">
-            <MoreButton></MoreButton>
+            <div className="relative">
+              <div onClick={() => setIsOpenDropdown(!isOpenDropdown)}>
+                <MoreButton></MoreButton>
+              </div>
+              <HeaderDropdown isOpen={isOpenDropdown}></HeaderDropdown>
+            </div>
           </div>
         </div>
       </div>

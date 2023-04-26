@@ -1,5 +1,15 @@
 export type IconsProps = {
-  size?: number
-}
+  size?: number;
+};
 
-export type IconName = 'Contacts' | 'Label' | 'Home' | 'Message' | 'Notification' | 'Work' | 'ArrowBottom' | 'Search'
+export type IconName =
+  | "Contacts"
+  | "Label"
+  | "Home"
+  | "Message"
+  | "Notification"
+  | "Work"
+  | "ArrowBottom"
+  | "Search"
+  | "Bookmark"
+  | "Award"
