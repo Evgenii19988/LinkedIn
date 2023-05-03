@@ -1,12 +1,15 @@
-import React, { FC, useState } from "react";
+import React, { FC, useRef, useState } from "react";
 import { Outlet } from "react-router";
 import Icon from "../../shared/icons";
 import { Avatar, Input, CategoryLink } from "../../shared/ui";
 import MoreButton from "../../shared/ui/more-button";
 import { HeaderDropdown } from "../../features/header-dropdown";
+import useClickOutside from "../../shared/lib/hooks/click-outside-hook";
 
 const LayoutWrapper: FC = () => {
   const [isOpenDropdown, setIsOpenDropdown] = useState(false);
+  const headerDropdownRef = useRef(null);
+  useClickOutside(headerDropdownRef, (event) => console.log(event.target));
 
   return (
     <div className="flex flex-col items-center">
@@ -36,10 +39,16 @@ const LayoutWrapper: FC = () => {
           <p className="text-sm font-medium">Wawan Purwanto</p>
           <div className="flex items-center">
             <div className="relative">
-              <div onClick={() => setIsOpenDropdown(!isOpenDropdown)}>
+              <div
+                className={isOpenDropdown ? "rotate-180" : ""}
+                onClick={() => setIsOpenDropdown(!isOpenDropdown)}
+              >
                 <MoreButton></MoreButton>
               </div>
-              <HeaderDropdown isOpen={isOpenDropdown}></HeaderDropdown>
+              <HeaderDropdown
+                ref={headerDropdownRef}
+                isOpen={isOpenDropdown}
+              ></HeaderDropdown>
             </div>
           </div>
         </div>

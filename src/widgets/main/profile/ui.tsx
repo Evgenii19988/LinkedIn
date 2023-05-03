@@ -16,7 +16,7 @@ const Profile: FC = () => {
         </div>
       </div>
       <div className="bg-white rounded-b-[32px]">
-        <h3 className="text-center text-sm font-medium mt-[46px]">
+        <h3 className="text-center text-sm font-medium pt-[46px]">
           Wawan Purwanto
         </h3>
         <p className="text-xs text-center mt-[10px]">
@@ -33,7 +33,7 @@ const Profile: FC = () => {
             <span>400+</span>
           </div>
         </div>
-        <div className="flex justify-center gap-[50px] mt-[21px]">
+        <div className="flex justify-center gap-[50px] mt-[21px] pb-[38px]">
           <div className="flex rounded-full items-center justify-center gap-[3px]">
             <div className="bg-[#3456FFBF] rounded-full p-[4px]">
               <Icon iconName="Bookmark"></Icon>

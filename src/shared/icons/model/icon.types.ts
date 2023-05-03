@@ -13,3 +13,5 @@ export type IconName =
   | "Search"
   | "Bookmark"
   | "Award"
+  | "Peoples"
+  | "Calendar";

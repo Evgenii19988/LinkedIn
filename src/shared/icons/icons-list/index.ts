@@ -8,6 +8,8 @@ import ArrowBottom from "./arrow-bottom";
 import Search from "./search";
 import Bookmark from "./bookmark";
 import Award from "./award";
+import Peoples from "./peoples";
+import Calendar from "./calendar";
 
 export {
   Home,
@@ -20,4 +22,6 @@ export {
   Search,
   Bookmark,
   Award,
+  Peoples,
+  Calendar,
 };

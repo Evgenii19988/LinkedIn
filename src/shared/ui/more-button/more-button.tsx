@@ -7,7 +7,7 @@ const MoreButton: FC<MoreButtonProps> = (props) => {
   const { arrowPosition = "bottom" } = props;
 
   return (
-    <div className={getMoreButtonClassName()}>
+    <div className={getMoreButtonClassName(arrowPosition)}>
       <Icon iconName='ArrowBottom'></Icon>
     </div>
   );
