@@ -9,7 +9,9 @@ import useClickOutside from "../../shared/lib/hooks/click-outside-hook";
 const LayoutWrapper: FC = () => {
   const [isOpenDropdown, setIsOpenDropdown] = useState(false);
   const headerDropdownRef = useRef(null);
-  useClickOutside(headerDropdownRef, (event) => console.log(event.target));
+  useClickOutside(headerDropdownRef, () => {
+      setIsOpenDropdown(false);
+  });
 
   return (
     <div className="flex flex-col items-center">
@@ -38,16 +40,18 @@ const LayoutWrapper: FC = () => {
           />
           <p className="text-sm font-medium">Wawan Purwanto</p>
           <div className="flex items-center">
-            <div className="relative">
+            <div ref={headerDropdownRef} className="relative">
               <div
                 className={isOpenDropdown ? "rotate-180" : ""}
-                onClick={() => setIsOpenDropdown(!isOpenDropdown)}
+                onClick={() => {
+                  setIsOpenDropdown(!isOpenDropdown);
+                }}
               >
                 <MoreButton></MoreButton>
               </div>
               <HeaderDropdown
-                ref={headerDropdownRef}
                 isOpen={isOpenDropdown}
+                setIsOpen={setIsOpenDropdown}
               ></HeaderDropdown>
             </div>
           </div>

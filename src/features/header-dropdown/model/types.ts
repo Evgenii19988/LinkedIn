@@ -1,6 +1,6 @@
-import { RefObject } from "react";
+import { RefObject, SetStateAction, Dispatch } from "react";
 
 export type HeaderDropdownProps = {
   isOpen: boolean;
-  ref: RefObject<HTMLDivElement>
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
 };
