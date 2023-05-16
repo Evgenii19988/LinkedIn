@@ -1,17 +1,12 @@
-import React, { FC, useRef, useState } from "react";
+import React, { FC, useState, MouseEvent } from "react";
 import { Outlet } from "react-router";
 import Icon from "../../shared/icons";
 import { Avatar, Input, CategoryLink } from "../../shared/ui";
 import MoreButton from "../../shared/ui/more-button";
 import { HeaderDropdown } from "../../features/header-dropdown";
-import useClickOutside from "../../shared/lib/hooks/click-outside-hook";
 
 const LayoutWrapper: FC = () => {
   const [isOpenDropdown, setIsOpenDropdown] = useState(false);
-  const headerDropdownRef = useRef(null);
-  useClickOutside(headerDropdownRef, () => {
-      setIsOpenDropdown(false);
-  });
 
   return (
     <div className="flex flex-col items-center">
@@ -40,10 +35,11 @@ const LayoutWrapper: FC = () => {
           />
           <p className="text-sm font-medium">Wawan Purwanto</p>
           <div className="flex items-center">
-            <div ref={headerDropdownRef} className="relative">
+            <div className="relative profile-active">
               <div
                 className={isOpenDropdown ? "rotate-180" : ""}
-                onClick={() => {
+                onClick={(event: MouseEvent<HTMLDivElement>) => {
+                  event.stopPropagation();
                   setIsOpenDropdown(!isOpenDropdown);
                 }}
               >
