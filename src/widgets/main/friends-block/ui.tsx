@@ -1,12 +1,14 @@
 import React, { FC } from "react";
-import { Avatar } from "../../../shared/ui";
-import Icon from "../../../shared/icons";
 import MoreButton from "../../../shared/ui/more-button";
 import { NewFriendCard } from "../../../entities/new-friend-card";
 
 const FriendsBlock: FC = () => {
   return (
-    <div className="flex flex-col gap-[15px] w-[292px] pl-[8px] pr-[32px] pt-[84px] pb-[45px] rounded-[32px] bg-white text-xs">
+    <div className="flex flex-col gap-[15px] w-[292px] pl-[8px] pr-[32px] pt-[39px] pb-[45px] rounded-[32px] bg-white text-xs">
+      <div className="flex justify-between font-medium text-sm">
+        <h3>Following</h3>
+        <MoreButton arrowPosition="right" />
+      </div>
       <NewFriendCard
         name="Jhon Robert"
         description="Product Designer at dsgn.id"

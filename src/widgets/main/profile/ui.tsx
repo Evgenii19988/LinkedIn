@@ -16,7 +16,7 @@ const Profile: FC = () => {
         </div>
       </div>
       <div className="bg-white rounded-b-[32px]">
-        <h3 className="text-center text-sm font-medium pt-[46px]">
+        <h3 className="text-center text-sm font-medium pt-[46px] font-Roboto">
           Wawan Purwanto
         </h3>
         <p className="text-xs text-center mt-[10px]">

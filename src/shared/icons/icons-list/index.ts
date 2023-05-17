@@ -10,6 +10,8 @@ import Bookmark from "./bookmark";
 import Award from "./award";
 import Peoples from "./peoples";
 import Calendar from "./calendar";
+import Eye from "./eye";
+import Logo from "./logo";
 
 export {
   Home,
@@ -24,4 +26,6 @@ export {
   Award,
   Peoples,
   Calendar,
+  Eye,
+  Logo
 };
