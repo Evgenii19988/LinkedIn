@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { IconName } from "../../icons/model/icon.types";
 
 export function getInputWrapperClassName() {
   return clsx(
@@ -6,13 +7,12 @@ export function getInputWrapperClassName() {
     "border",
     "bg-[#F8F8FA]",
     "w-full",
-    "h-[50px]",
     "rounded-[25px]",
     "flex"
   );
 }
 
-export function getInputClassName() {
+export function getInputClassName(beforeIcon: IconName | undefined) {
   return clsx(
     "border-none",
     "bg-[#F8F8FA]",
@@ -20,6 +20,6 @@ export function getInputClassName() {
     "h-full",
     "rounded-[25px]",
     "focus:outline-none",
-    "px-[62px]"
+    beforeIcon ? "px-[62px]" : "px-[23px]"
   );
 }

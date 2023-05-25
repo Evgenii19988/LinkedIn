@@ -12,6 +12,11 @@ import Peoples from "./peoples";
 import Calendar from "./calendar";
 import Eye from "./eye";
 import Logo from "./logo";
+import Dot from "./dot";
+import Gallery from "./gallery";
+import Play from "./play";
+import Bag from "./bag";
+import List from "./list";
 
 export {
   Home,
@@ -27,5 +32,10 @@ export {
   Peoples,
   Calendar,
   Eye,
-  Logo
+  Logo,
+  Dot,
+  Gallery,
+  Play,
+  Bag,
+  List,
 };

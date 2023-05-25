@@ -17,4 +17,8 @@ export type IconName =
   | "Calendar"
   | "Eye"
   | "Logo"
-  | "Dot";
+  | "Dot"
+  | "Gallery"
+  | "Play"
+  | "Bag"
+  | "List"
