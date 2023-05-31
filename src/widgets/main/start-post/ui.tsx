@@ -2,8 +2,11 @@ import React, { FC } from "react";
 import { Avatar, Input } from "../../../shared/ui";
 import Icon from "../../../shared/icons";
 import { IconName } from "../../../shared/icons/model/icon.types";
+import { StartPostProps } from "./model/types";
+import { StartPostButton } from "../../../entities/start-post-button";
 
-const StartPost: FC = () => {
+const StartPost: FC<StartPostProps> = (props) => {
+  const { value, setValue } = props;
   const menuItem = (name: string, iconName: IconName) => {
     return (
       <li className="flex gap-[5px] items-center cursor-pointer">
@@ -22,7 +25,11 @@ const StartPost: FC = () => {
           imageSize={60}
           image="images/WawanPurwanto.png"
         />
-        <Input placeholder="Start a post" inputHeight={60} />
+        <StartPostButton
+          onClick={() => {
+            setValue(true);
+          }}
+        />
       </div>
       <div className="flex justify-between mt-[15px]">
         <ul>{menuItem("Photo", "Gallery")}</ul>

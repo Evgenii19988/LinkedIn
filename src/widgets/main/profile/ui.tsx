@@ -19,7 +19,7 @@ const Profile: FC = () => {
         <h3 className="text-center text-sm font-medium pt-[46px]">
           Wawan Purwanto
         </h3>
-        <p className="text-xs text-center mt-[10px]">
+        <p className="text-xs text-center mt-[10px] font-Roboto">
           {" "}
           I have experince 1 year UI/UX Design
         </p>
