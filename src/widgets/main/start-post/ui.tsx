@@ -6,7 +6,7 @@ import { StartPostProps } from "./model/types";
 import { StartPostButton } from "../../../entities/start-post-button";
 
 const StartPost: FC<StartPostProps> = (props) => {
-  const { value, setValue } = props;
+  const { setValue } = props;
   const menuItem = (name: string, iconName: IconName) => {
     return (
       <li className="flex gap-[5px] items-center cursor-pointer">

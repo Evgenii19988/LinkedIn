@@ -3,20 +3,26 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Roboto-Regular';
-  src: local('Roboto'), url(/public/fonts/Roboto-Regular.ttf) format('ttf');
+  font-family: "Roboto";
+  font-weight: 400;
+  src: local("Roboto"),
+    url(/src/app/styles/fonts/Roboto-Regular.ttf) format("truetype");
 }
 @font-face {
-  font-family: 'Roboto-Medium';
-  src: local('Roboto'), url(./fonts/Roboto-Medium.ttf) format('ttf');
+  font-family: "Roboto";
+  font-weight: 500;
+  src: local("Roboto"),
+    url(/src/app/styles/fonts/Roboto-Medium.ttf) format("truetype");
 }
 @font-face {
-  font-family: 'Roboto-Medium';
-  src: local('Roboto'), url(./fonts/Roboto-Bold.ttf) format('ttf');
+  font-family: "Roboto";
+  font-weight: 700;
+  src: local("Roboto"),
+    url(/src/app/styles/fonts/Roboto-Bold.ttf) format("truetype");
 }
 
-/* @layer base {
+@layer base {
   html {
     font-family: Roboto, system-ui, sans-serif;
   }
-} */
+}

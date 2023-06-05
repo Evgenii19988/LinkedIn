@@ -12,9 +12,13 @@ export function getInputWrapperClassName() {
   );
 }
 
-export function getInputClassName(beforeIcon: IconName | undefined) {
+export function getInputClassName(
+  beforeIcon: IconName | undefined,
+  error: string | undefined
+) {
   return clsx(
     "border-none",
+    error ? "border-red" : "",
     "bg-[#F8F8FA]",
     "w-full",
     "h-full",

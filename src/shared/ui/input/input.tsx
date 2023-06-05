@@ -5,7 +5,14 @@ import Icon from "../../icons";
 
 const Input = forwardRef(
   (props: InputProps, forwardedRef: ForwardedRef<HTMLInputElement>) => {
-    const { placeholder = "", beforeIcon, inputHeight = 50 } = props;
+    const {
+      placeholder = "",
+      beforeIcon,
+      inputHeight = 50,
+      onChange,
+      name,
+      error,
+    } = props;
 
     return (
       <div
@@ -18,10 +25,12 @@ const Input = forwardRef(
           </span>
         )}
         <input
+          onChange={onChange}
           ref={forwardedRef}
+          name={name}
           type="text"
           placeholder={placeholder}
-          className={getInputClassName(beforeIcon)}
+          className={getInputClassName(beforeIcon, error)}
         />
       </div>
     );
