@@ -22,7 +22,7 @@ const NewPostForm = (props: NewPostFormProps) => {
 
   return (
     <Modal value={isShow} setValue={setIsShow}>
-      <div className="flex gap-[20px] flex-col">
+      <div className="flex gap-[25px] flex-col">
         <Input
           {...register("postName", {
             required: {
@@ -51,7 +51,6 @@ const NewPostForm = (props: NewPostFormProps) => {
             label="Создать"
           ></Button>
         </div>
-        <div onClick={() => console.log(errors.postName?.message)}>sss</div>
       </div>
     </Modal>
   );

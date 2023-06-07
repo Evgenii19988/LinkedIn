@@ -27,4 +27,5 @@ export type IconName =
   | "Like"
   | "Comment"
   | "Send"
-  | "Share";
+  | "Share"
+  | "Close";

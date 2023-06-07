@@ -22,6 +22,7 @@ import Like from "./like";
 import Comment from "./comment";
 import Send from "./send";
 import Share from "./share";
+import Close from "./close";
 
 export {
   Home,
@@ -48,4 +49,5 @@ export {
   Comment,
   Send,
   Share,
+  Close
 };
