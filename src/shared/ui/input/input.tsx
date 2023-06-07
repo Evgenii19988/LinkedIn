@@ -14,6 +14,12 @@ const Input = forwardRef(
       error,
     } = props;
 
+    const renderError = !!error && (
+      <p className="text-sm text-red-600 absolute left-0 top-[calc(100%)]">
+        <>{error}</>
+      </p>
+    );
+
     return (
       <div
         style={{ height: `${inputHeight}px` }}
@@ -32,6 +38,7 @@ const Input = forwardRef(
           placeholder={placeholder}
           className={getInputClassName(beforeIcon, error)}
         />
+        {renderError}
       </div>
     );
   }

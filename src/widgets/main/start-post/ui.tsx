@@ -18,7 +18,7 @@ const StartPost: FC<StartPostProps> = (props) => {
     );
   };
   return (
-    <div className="flex flex-col rounded-[22px] bg-white m-[9px] px-[13px] pt-[13px] pb-[31px]">
+    <div className="flex flex-col rounded-[22px] bg-white ] px-[13px] pt-[13px] pb-[31px] mb-[13px]">
       <div className="flex items-center gap-[10px]">
         <Avatar
           borderSize={0}

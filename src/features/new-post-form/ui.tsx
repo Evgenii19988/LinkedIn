@@ -31,12 +31,27 @@ const NewPostForm = (props: NewPostFormProps) => {
             },
           })}
           placeholder="Наименование поста"
+          error={errors.postName?.message}
         ></Input>
-        <Textarea placeholder="Введите текст" textareaRows={5}></Textarea>
+        <Textarea
+          {...register("postText", {
+            required: {
+              value: true,
+              message: "Поле обязательно для заполнения",
+            },
+          })}
+          error={errors.postText?.message}
+          placeholder="Введите текст"
+          textareaRows={5}
+        ></Textarea>
         <Upload></Upload>
         <div className="flex justify-center">
-          <Button label="Создать"></Button>
+          <Button
+            onClick={handleSubmit(() => console.log(errors))}
+            label="Создать"
+          ></Button>
         </div>
+        <div onClick={() => console.log(errors.postName?.message)}>sss</div>
       </div>
     </Modal>
   );

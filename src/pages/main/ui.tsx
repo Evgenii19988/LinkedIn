@@ -7,6 +7,7 @@ import { FriendSlider } from "../../features/friend-slider";
 import { CorporationMenu } from "../../widgets/main/corporation-menu";
 import { StartPost } from "../../widgets/main/start-post";
 import { NewPostForm } from "../../features/new-post-form";
+import { Post } from "../../widgets/main/post";
 
 const MainPage: FC = () => {
   const [isShow, setIsShow] = useState(false);
@@ -20,6 +21,7 @@ const MainPage: FC = () => {
       <div className="w-full">
         <FriendSlider />
         <StartPost setValue={setIsShow} />
+        <Post />
       </div>
       <div className="flex flex-col gap-[21px] w-[292px]">
         <FriendsBlock />

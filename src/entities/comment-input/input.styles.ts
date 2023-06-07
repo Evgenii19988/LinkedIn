@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { IconName } from "../../icons/model/icon.types";
+import { IconName } from "../../shared/icons/model/icon.types";
 
 export function getInputWrapperClassName() {
   return clsx(
@@ -8,15 +8,11 @@ export function getInputWrapperClassName() {
     "bg-[#F8F8FA]",
     "w-full",
     "rounded-[25px]",
-    "flex",
-    "relative"
+    "flex"
   );
 }
 
-export function getInputClassName(
-  beforeIcon: IconName | undefined,
-  error: string | undefined
-) {
+export function getInputClassName(error: string | undefined) {
   return clsx(
     "border-none",
     error ? "border-red" : "",
@@ -25,6 +21,7 @@ export function getInputClassName(
     "h-full",
     "rounded-[25px]",
     "focus:outline-none",
-    beforeIcon ? "px-[62px]" : "px-[23px]"
+    "pl-[38px]",
+    "pr-[140px]"
   );
 }

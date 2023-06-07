@@ -1,5 +1,6 @@
 export type IconsProps = {
   size?: number;
+  color?: string;
 };
 
 export type IconName =
@@ -22,3 +23,8 @@ export type IconName =
   | "Play"
   | "Bag"
   | "List"
+  | "MoreVertical"
+  | "Like"
+  | "Comment"
+  | "Send"
+  | "Share";

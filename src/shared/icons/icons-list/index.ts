@@ -17,6 +17,11 @@ import Gallery from "./gallery";
 import Play from "./play";
 import Bag from "./bag";
 import List from "./list";
+import MoreVertical from "./more-vertical";
+import Like from "./like";
+import Comment from "./comment";
+import Send from "./send";
+import Share from "./share";
 
 export {
   Home,
@@ -38,4 +43,9 @@ export {
   Play,
   Bag,
   List,
+  MoreVertical,
+  Like,
+  Comment,
+  Send,
+  Share,
 };
