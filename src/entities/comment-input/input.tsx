@@ -21,10 +21,7 @@ const CommentInput = forwardRef(
           className={getInputClassName(error)}
         />
         <span className="absolute top-[13px] right-[47px] cursor-pointer">
-          <Icon iconName='Send'></Icon>
-        </span>
-        <span className="absolute top-[13px] right-[115px] cursor-pointer">
-          <Icon iconName='Send'></Icon>
+          <Icon iconName="Send"></Icon>
         </span>
       </div>
     );

@@ -12,6 +12,7 @@ const Input = forwardRef(
       onChange,
       name,
       error,
+      label,
     } = props;
 
     const renderError = !!error && (
@@ -21,24 +22,27 @@ const Input = forwardRef(
     );
 
     return (
-      <div
-        style={{ height: `${inputHeight}px` }}
-        className={getInputWrapperClassName()}
-      >
-        {beforeIcon && (
-          <span className="absolute top-[13px] left-[31px] cursor-pointer">
-            <Icon iconName={beforeIcon}></Icon>
-          </span>
-        )}
-        <input
-          onChange={onChange}
-          ref={forwardedRef}
-          name={name}
-          type="text"
-          placeholder={placeholder}
-          className={getInputClassName(beforeIcon, error)}
-        />
-        {renderError}
+      <div>
+        {label && <span className="text-sm text-gray-500 ml-[5px]">{label}</span>}
+        <div
+          style={{ height: `${inputHeight}px` }}
+          className={getInputWrapperClassName()}
+        >
+          {beforeIcon && (
+            <span className="absolute top-[13px] left-[31px] cursor-pointer">
+              <Icon iconName={beforeIcon}></Icon>
+            </span>
+          )}
+          <input
+            onChange={onChange}
+            ref={forwardedRef}
+            name={name}
+            type="text"
+            placeholder={placeholder}
+            className={getInputClassName(beforeIcon, error)}
+          />
+          {renderError}
+        </div>
       </div>
     );
   }

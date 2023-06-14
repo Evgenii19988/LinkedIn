@@ -23,16 +23,21 @@ const Textarea = forwardRef(
     );
 
     return (
-      <div className={getTextareaWrapperClassName()}>
-        <textarea
-          ref={forwardedRef}
-          onChange={onChange}
-          name={name}
-          rows={textareaRows}
-          placeholder={placeholder}
-          className={getTextareaClassName()}
-        />
-        {renderError}
+      <div>
+        {label && (
+          <span className="text-sm text-gray-500 ml-[5px]">{label}</span>
+        )}
+        <div className={getTextareaWrapperClassName()}>
+          <textarea
+            ref={forwardedRef}
+            onChange={onChange}
+            name={name}
+            rows={textareaRows}
+            placeholder={placeholder}
+            className={getTextareaClassName()}
+          />
+          {renderError}
+        </div>
       </div>
     );
   }

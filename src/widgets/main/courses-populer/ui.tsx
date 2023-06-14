@@ -18,7 +18,7 @@ const CoursesPopuler: FC = () => {
               </p>
               <span>Thomas Wick</span>
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col items-end">
               <Icon iconName="Eye"></Icon>
               <span>50+</span>
             </div>
@@ -28,7 +28,7 @@ const CoursesPopuler: FC = () => {
               <p className="max-w-[197px] text-sm">How to Be UI Design</p>
               <span>Alan UI Design</span>
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col items-end">
               <Icon iconName="Eye"></Icon>
               <span>150+</span>
             </div>
@@ -40,7 +40,7 @@ const CoursesPopuler: FC = () => {
               </p>
               <span>Rubicode </span>
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col items-end">
               <Icon iconName="Eye"></Icon>
               <span>50+</span>
             </div>
@@ -50,12 +50,12 @@ const CoursesPopuler: FC = () => {
               <p className="max-w-[197px] text-sm">Tips and Trick Freelance</p>
               <span>purwanstudio</span>
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col items-end">
               <Icon iconName="Eye"></Icon>
               <span>520+</span>
             </div>
           </div>
-          <p className="text-[#27AE60] font-sm">Courses Populer</p>
+          <p className="text-darkGreen font-sm">Courses Populer</p>
         </div>
       </div>
     </div>

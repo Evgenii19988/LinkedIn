@@ -25,7 +25,7 @@ const FriendsBlock: FC = () => {
         name="Billy Code"
         description="Product Designer at dsgn.id"
       ></NewFriendCard>
-      <p className="text-[#27AE60] font-sm">More Recomendation</p>
+      <p className="text-darkGreen font-sm">More Recomendation</p>
     </div>
   );
 };

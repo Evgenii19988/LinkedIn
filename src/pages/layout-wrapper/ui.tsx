@@ -4,9 +4,13 @@ import Icon from "../../shared/icons";
 import { Avatar, Input, CategoryLink } from "../../shared/ui";
 import MoreButton from "../../shared/ui/more-button";
 import { HeaderDropdown } from "../../features/header-dropdown";
+import { EditProfileForm } from "../../features/edit-profile-form";
+import { useAppSelector } from "../../shared/hooks/use-app-selector";
 
 const LayoutWrapper: FC = () => {
   const [isOpenDropdown, setIsOpenDropdown] = useState(false);
+  const [isOpenEditProfileModal, setIsOpenEditProfileModal] = useState(false);
+  const { user } = useAppSelector((state) => state.authSlice);
 
   return (
     <div className="flex flex-col items-center">
@@ -34,7 +38,7 @@ const LayoutWrapper: FC = () => {
               imageSize={40}
               image="images/WawanPurwanto.png"
             />
-            <p className="text-sm font-medium">Wawan Purwanto</p>
+            <p className="text-sm font-medium">{user.name}</p>
             <div className="flex items-center">
               <div className="relative profile-active">
                 <div
@@ -49,12 +53,18 @@ const LayoutWrapper: FC = () => {
                 <HeaderDropdown
                   isOpen={isOpenDropdown}
                   setIsOpen={setIsOpenDropdown}
+                  isOpenEditProfileModal={isOpenEditProfileModal}
+                  setIsOpenEditProfileModal={setIsOpenEditProfileModal}
                 ></HeaderDropdown>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <EditProfileForm
+        isShow={isOpenEditProfileModal}
+        setIsShow={setIsOpenEditProfileModal}
+      ></EditProfileForm>
       <div className="bg-[#F8F8FA] w-full flex flex-col items-center overflow-auto h-[calc(100vh-89px)]">
         <div className="max-w-[1260px] w-full px-[15px] pt-[24px] pb-[30px]">
           <Outlet />

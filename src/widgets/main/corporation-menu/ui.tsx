@@ -4,7 +4,7 @@ import Icon from "../../../shared/icons";
 const CorporationMenu: FC = () => {
   const listItem = (name: string) => {
     return (
-      <li className="flex gap-[5px]">
+      <li className="flex gap-[5px] leading-[14px]">
         <Icon iconName="Dot"></Icon>
         {name}
       </li>
@@ -19,13 +19,13 @@ const CorporationMenu: FC = () => {
       </div>
       <div>
         <ul className="flex justify-between">
-          <div>
+          <div className="flex flex-col gap-y-[5px]">
             {listItem("About")}
             {listItem("Accesibility ")}
             {listItem("Help Center")}
             {listItem("Privacy & Terms  ")}
           </div>
-          <div>
+          <div className="flex flex-col gap-y-[5px]">
             {listItem("Advertising ")}
             {listItem("Business Services")}
             {listItem("Download Apps")}

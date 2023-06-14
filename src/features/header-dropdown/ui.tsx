@@ -4,15 +4,26 @@ import { getHeaderDropdownClassName } from "./model/header-dropdown.style";
 import useClickOutside from "../../shared/lib/hooks/click-outside-hook";
 
 const HeaderDropdown = (props: HeaderDropdownProps) => {
-  const { isOpen, setIsOpen } = props;
-  const headerDropdownRef = useRef(null)
+  const {
+    isOpen,
+    setIsOpen,
+    isOpenEditProfileModal,
+    setIsOpenEditProfileModal,
+  } = props;
+  const headerDropdownRef = useRef(null);
 
   useClickOutside(headerDropdownRef, () => {
     setIsOpen(false);
   });
+
   return (
     <div ref={headerDropdownRef} className={getHeaderDropdownClassName(isOpen)}>
-      <p className="cursor-pointer hover:bg-slate-100 px-[10px] py-[5px]">
+      <p
+        onClick={() => {
+          setIsOpenEditProfileModal(!isOpenEditProfileModal);
+        }}
+        className="cursor-pointer hover:bg-slate-100 px-[10px] py-[5px]"
+      >
         Редактировать
       </p>
       <p className="cursor-pointer hover:bg-slate-100 px-[10px] py-[5px]">

@@ -31,6 +31,7 @@ const NewPostForm = (props: NewPostFormProps) => {
             },
           })}
           placeholder="Наименование поста"
+          label="Наименование поста"
           error={errors.postName?.message}
         ></Input>
         <Textarea
@@ -42,6 +43,7 @@ const NewPostForm = (props: NewPostFormProps) => {
           })}
           error={errors.postText?.message}
           placeholder="Введите текст"
+          label="Введите текст"
           textareaRows={5}
         ></Textarea>
         <Upload></Upload>

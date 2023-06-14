@@ -15,7 +15,7 @@ const Upload: FC<UploadProps> = (props) => {
       file:rounded-full file:border-0
       file:text-sm file:font-semibold
       file:bg-[#3456FFBF] file:text-[#FFFFFF]
-      hover:file:opacity-70
+      hover:file:opacity-70 cursor-pointer
     "
         />
       </label>

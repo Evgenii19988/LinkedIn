@@ -7,7 +7,7 @@ import CommentInput from "../../../entities/comment-input";
 const Post: FC = () => {
   const menuItem = (iconName: IconName, text: string, color = "") => {
     return (
-      <div className="flex gap-[5px] items-center text-[#070928BF]">
+      <div className="flex gap-[5px] items-center text-[#070928BF] cursor-pointer">
         <Icon color={color} iconName={iconName} />
         <span>{text}</span>
       </div>
@@ -40,7 +40,7 @@ const Post: FC = () => {
         Challenge Application about food and Coffe Restaurant
       </p>
       <div className="flex justify-end">
-        <span className="cursor-pointer mt-[15px] text-[#27AE60] font-medium">
+        <span className="cursor-pointer mt-[15px] text-darkGreen font-medium">
           More Article
         </span>
       </div>

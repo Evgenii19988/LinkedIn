@@ -4,8 +4,9 @@ export function getButtonClassName() {
   return clsx(
     "px-[25px]",
     "py-[16px]",
-    "bg-[#3456FFBF]",
+    "bg-mainBlue",
     "rounded-[25px]",
-    "text-white"
+    "text-white",
+    "hover:opacity-70"
   );
 }
