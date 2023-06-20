@@ -7,7 +7,7 @@ import CommentInput from "../../../entities/comment-input";
 const Post: FC = () => {
   const menuItem = (iconName: IconName, text: string, color = "") => {
     return (
-      <div className="flex gap-[5px] items-center text-[#070928BF] cursor-pointer">
+      <div className="flex gap-[5px] items-center text-mainBlack cursor-pointer">
         <Icon color={color} iconName={iconName} />
         <span>{text}</span>
       </div>

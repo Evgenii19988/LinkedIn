@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import { NewPostFormProps } from "./model/types";
-import { getHeaderDropdownClassName } from "./model/header-dropdown.style";
 import { Modal, Input, Textarea, Upload, Button } from "../../shared/ui";
 import { useForm } from "react-hook-form";
 
@@ -43,7 +42,7 @@ const NewPostForm = (props: NewPostFormProps) => {
           })}
           error={errors.postText?.message}
           placeholder="Введите текст"
-          label="Введите текст"
+          label="Текст поста"
           textareaRows={5}
         ></Textarea>
         <Upload></Upload>

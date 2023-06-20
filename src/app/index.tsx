@@ -9,7 +9,7 @@ import { WorkPage } from "../pages/work";
 
 function App() {
   return (
-    <div>
+    <div className="text-mainBlack">
       <Routes>
         <Route path="/" element={<LayoutWrapper />}>
           <Route path="/" element={<MainPage />} />

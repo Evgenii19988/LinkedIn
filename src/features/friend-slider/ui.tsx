@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect } from "react";
 import SwiperCore, { Virtual, Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -8,26 +8,18 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import "./model/styles.css";
-import { Avatar } from "../../shared/ui";
+import { Avatar, Loading } from "../../shared/ui";
+import GetLazyUsersQuery from "./model/get-lazy-users-query";
+import { User } from "../../shared/model/types/users.types";
 
 // install Virtual module
 SwiperCore.use([Virtual, Navigation, Pagination]);
 
 export default function App() {
-  const [slides] = useState<{ name: string; image: string }[]>([
-    { name: "Dwight", image: "images/Dwight.png" },
-    { name: "Julie", image: "images/Julie.png" },
-    { name: "Leslie", image: "images/Leslie.png" },
-    { name: "Marvin", image: "images/Marvin.png" },
-    { name: "Randall", image: "images/Randall.png" },
-    { name: "Shane", image: "images/Shane.png" },
-    { name: "Wendy", image: "images/Wendy.png" },
-    { name: "Philip", image: "images/Philip.png" },
-    { name: "Randal", image: "images/Julie.png" },
-    { name: "Dwight", image: "images/Dwight.png" },
-    { name: "Julie", image: "images/Julie.png" },
-    { name: "Leslie", image: "images/Leslie.png" },
-  ]);
+  const { getUsers, data, isLoading } = GetLazyUsersQuery();
+  useEffect(() => {
+    getUsers(null);
+  }, []);
 
   return (
     <>
@@ -40,7 +32,7 @@ export default function App() {
         navigation={true}
         virtual
       >
-        {slides.map((slideContent, index) => (
+        {data?.data?.map((user: User, index: number) => (
           <SwiperSlide
             className="flex flex-col"
             key={index}
@@ -50,12 +42,13 @@ export default function App() {
               borderSize={4}
               imageSize={52}
               borderColor="rgba(52, 86, 255, 0.5)"
-              image={slideContent.image}
+              image={user.image}
             ></Avatar>
-            {slideContent.name}
+            {user.name}
           </SwiperSlide>
         ))}
       </Swiper>
+      {isLoading && <Loading></Loading>}
     </>
   );
 }

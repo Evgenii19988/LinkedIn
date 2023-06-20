@@ -14,7 +14,7 @@ const LayoutWrapper: FC = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="flex justify-center border-bottom border-b border-[#F8F8FA] w-full">
+      <div className="flex justify-center border-bottom border-b border-mainGray w-full">
         <div className="max-w-[1260px] w-full px-[15px] flex items-center h-[89px]">
           <div>
             <Icon iconName="Label"></Icon>

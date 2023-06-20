@@ -11,7 +11,7 @@ const Sidebar: FC = () => {
           <h3>Groups</h3>
           <MoreButton arrowPosition="right" />
         </div>
-        <div className="flex flex-col gap-[5px] mt-[7px]">
+        <div className="flex flex-col gap-[5px] mt-[7px] text-opacityBlack">
           <div className="flex items-center gap-[3px] mt-[3px]">
             <Icon iconName="Peoples"></Icon>
             <span>UI/UX Design</span>
@@ -24,7 +24,7 @@ const Sidebar: FC = () => {
             <Icon iconName="Peoples"></Icon>
             <span>UI Design</span>
           </div>
-          <p className="text-[#4FCB8D] ml-[21px]">More</p>
+          <p className="text-lightGreen ml-[21px]">More</p>
         </div>
       </div>
       <div>
@@ -33,7 +33,7 @@ const Sidebar: FC = () => {
           <MoreButton arrowPosition="right" />
         </div>
         <div className="flex flex-col gap-[5px] mt-[7px]">
-          <div className="flex items-center gap-[3px] mt-[3px]">
+          <div className="flex items-center gap-[3px] mt-[3px] text-opacityBlack">
             <Icon iconName="Calendar"></Icon>
             <span>Webinar UI Design at 09:00 am.</span>
           </div>
@@ -44,7 +44,7 @@ const Sidebar: FC = () => {
           <h3>Followed Hastag</h3>
           <MoreButton arrowPosition="right" />
         </div>
-        <div className="flex flex-wrap gap-[5px] mt-[7px]">
+        <div className="flex flex-wrap gap-[5px] mt-[7px] text-opacityBlack">
           <span>#UIDesign</span>
           <span>#UIUXDesign</span>
           <span>#UIRemote</span>

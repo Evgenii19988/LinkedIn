@@ -4,7 +4,7 @@ import Icon from "../../../shared/icons";
 const CorporationMenu: FC = () => {
   const listItem = (name: string) => {
     return (
-      <li className="flex gap-[5px] leading-[14px]">
+      <li className="flex gap-[5px] leading-[14px] cursor-pointer">
         <Icon iconName="Dot"></Icon>
         {name}
       </li>
@@ -29,7 +29,7 @@ const CorporationMenu: FC = () => {
             {listItem("Advertising ")}
             {listItem("Business Services")}
             {listItem("Download Apps")}
-            {listItem("More")}
+            <span className="text-lightGreen">{listItem("More")}</span>
           </div>
         </ul>
       </div>

@@ -5,7 +5,7 @@ export function getTextareaWrapperClassName() {
   return clsx(
     "relative",
     "border",
-    "bg-[#F8F8FA]",
+    "bg-mainGray",
     "w-full",
     "rounded-[25px]",
     "flex"
@@ -16,7 +16,7 @@ export function getTextareaClassName() {
   return clsx(
     "resize-none",
     "border-none",
-    "bg-[#F8F8FA]",
+    "bg-mainGray",
     "w-full",
     "h-full",
     "rounded-[25px]",

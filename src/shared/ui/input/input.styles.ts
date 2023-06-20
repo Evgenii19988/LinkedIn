@@ -5,7 +5,7 @@ export function getInputWrapperClassName() {
   return clsx(
     "relative",
     "border",
-    "bg-[#F8F8FA]",
+    "bg-mainGray",
     "w-full",
     "rounded-[25px]",
     "flex",
@@ -20,7 +20,7 @@ export function getInputClassName(
   return clsx(
     "border-none",
     error ? "border-red" : "",
-    "bg-[#F8F8FA]",
+    "bg-mainGray",
     "w-full",
     "h-full",
     "rounded-[25px]",

@@ -15,7 +15,7 @@ const NewFriendCard: FC<NewFriendCardProps> = (props) => {
         />
         <div className="flex flex-col ml-[14px]">
           <span className="font-medium text-[16px]">{name}</span>
-          <span>{description}</span>
+          <span className="text-opacityBlack mt-[5px]">{description}</span>
         </div>
       </div>
       <div className="flex items-center justify-center w-[18px] h-[18px] border-[2px] border-[#070928] opacity-50 rounded-full text-lg font-bold">

@@ -10,7 +10,7 @@ const StartPost: FC<StartPostProps> = (props) => {
   const menuItem = (name: string, iconName: IconName) => {
     return (
       <li className="flex gap-[5px] items-center cursor-pointer">
-        <div className="flex justify-center items-center w-[32px] h-[32px] rounded-full bg-[#3456FF] opacity-75">
+        <div className="flex justify-center items-center w-[32px] h-[32px] rounded-full bg-mainBlue opacity-75">
           <Icon iconName={iconName} />
         </div>
         <div>{name}</div>
@@ -31,7 +31,7 @@ const StartPost: FC<StartPostProps> = (props) => {
           }}
         />
       </div>
-      <div className="flex justify-between mt-[15px]">
+      <div className="flex justify-between mt-[15px] text-opacityBlack">
         <ul>{menuItem("Photo", "Gallery")}</ul>
         <ul>{menuItem("Vidieos", "Play")}</ul>
         <ul>{menuItem("Working", "Bag")}</ul>
