@@ -1,16 +1,25 @@
-import React, { FC, useState, MouseEvent } from "react";
+import React, { FC, useState, MouseEvent, useEffect } from "react";
 import { Outlet } from "react-router";
 import Icon from "../../shared/icons";
 import { Avatar, Input, CategoryLink } from "../../shared/ui";
 import MoreButton from "../../shared/ui/more-button";
 import { HeaderDropdown } from "../../features/header-dropdown";
 import { EditProfileForm } from "../../features/edit-profile-form";
-import { useAppSelector } from "../../shared/hooks/use-app-selector";
+import GetAuthMeQuery from "./model/get-auth-me-query";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../shared/model/slices/auth.slice";
 
 const LayoutWrapper: FC = () => {
+  const dispatch = useDispatch();
   const [isOpenDropdown, setIsOpenDropdown] = useState(false);
   const [isOpenEditProfileModal, setIsOpenEditProfileModal] = useState(false);
-  const { user } = useAppSelector((state) => state.authSlice);
+  const { data, isFetching } = GetAuthMeQuery();
+  useEffect(() => {
+    if (!isFetching) {
+      dispatch(authActions.setUserName(data?.name));
+      dispatch(authActions.setUserDescription(data?.description));
+    }
+  }, [isFetching]);
 
   return (
     <div className="flex flex-col items-center">
@@ -38,7 +47,7 @@ const LayoutWrapper: FC = () => {
               imageSize={40}
               image="images/WawanPurwanto.png"
             />
-            <p className="text-sm font-medium">{user.name}</p>
+            <p className="text-sm font-medium">{data?.name}</p>
             <div className="flex items-center">
               <div className="relative profile-active">
                 <div

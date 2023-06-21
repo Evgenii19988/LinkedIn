@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: {
-    name: "Wawan Purwanto",
-    description: "I have experince 1 year UI/UX Design",
+    name: "",
+    description: "",
   },
 };
 

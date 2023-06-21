@@ -5,9 +5,6 @@ export function makeServer({ environment = "test" } = {}) {
     routes() {
       this.namespace = "api/v1";
 
-      this.get("/users", (schema: any) => {
-        return schema.users.all();
-      });
       this.get(
         "/users",
         () => ({
@@ -28,6 +25,18 @@ export function makeServer({ environment = "test" } = {}) {
         }),
         { timing: 1000 }
       );
+      this.get("/me", () => ({
+        data: {
+          name: "Wawan Purwanto",
+          description: "I have experince 1 year UI/UX Design",
+        },
+      }));
+      this.post("/me", (schema, request) => {
+        console.log(schema, request);
+        let attrs = JSON.parse(request.requestBody);
+
+        return { reminder: attrs };
+      });
     },
   });
 
