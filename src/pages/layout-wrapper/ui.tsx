@@ -8,12 +8,14 @@ import { EditProfileForm } from "../../features/edit-profile-form";
 import GetAuthMeQuery from "./model/get-auth-me-query";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../shared/model/slices/auth.slice";
+import { useAppSelector } from "../../shared/hooks/use-app-selector";
 
 const LayoutWrapper: FC = () => {
   const dispatch = useDispatch();
   const [isOpenDropdown, setIsOpenDropdown] = useState(false);
   const [isOpenEditProfileModal, setIsOpenEditProfileModal] = useState(false);
   const { data, isFetching } = GetAuthMeQuery();
+  const { user } = useAppSelector((state) => state.authSlice);
   useEffect(() => {
     if (!isFetching) {
       dispatch(authActions.setUserName(data?.name));
@@ -47,7 +49,7 @@ const LayoutWrapper: FC = () => {
               imageSize={40}
               image="images/WawanPurwanto.png"
             />
-            <p className="text-sm font-medium">{data?.name}</p>
+            <p className="text-sm font-medium">{user.name}</p>
             <div className="flex items-center">
               <div className="relative profile-active">
                 <div

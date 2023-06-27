@@ -1,19 +1,22 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import { NewPostFormProps } from "./model/types";
 import { Modal, Input, Textarea, Upload, Button } from "../../shared/ui";
-import { useForm } from "react-hook-form";
 import { useAppDispatch } from "../../shared/hooks/use-app-dispatch";
 import { useAppSelector } from "../../shared/hooks/use-app-selector";
 import { authActions } from "../../shared/model/slices/auth.slice";
+import { ChangeMeMutation } from "./model/change-me-mutation";
+import { User } from "../../shared/model/types/users.types";
 
 const EditProfileForm = (props: NewPostFormProps) => {
   const { isShow, setIsShow } = props;
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.authSlice);
+  const { changeMe } = ChangeMeMutation();
   const defaultSetPostForm = {
-    userName: user.name,
-    userDescription: user.description,
-    userAvatar: null,
+    name: user.name,
+    description: user.description,
+    image: "",
   };
   const {
     watch,
@@ -25,17 +28,21 @@ const EditProfileForm = (props: NewPostFormProps) => {
     defaultValues: defaultSetPostForm,
   });
 
-  function saveUserProfileData() {
-    dispatch(authActions.setUserName(getValues("userName")));
-    dispatch(authActions.setUserDescription(getValues("userDescription")));
+  function saveUserProfileData(savedUserData: User) {
     setIsShow(false);
+    changeMe(savedUserData)
+      .unwrap()
+      .then((res) => {
+        dispatch(authActions.setUserName(res.data.name));
+        dispatch(authActions.setUserDescription(res.data.description));
+      });
   }
 
   return (
     <Modal value={isShow} setValue={setIsShow}>
       <div className="flex gap-[25px] flex-col">
         <Input
-          {...register("userName", {
+          {...register("name", {
             required: {
               value: true,
               message: "Поле обязательно для заполнения",
@@ -43,16 +50,16 @@ const EditProfileForm = (props: NewPostFormProps) => {
           })}
           placeholder="Имя"
           label="Имя"
-          error={errors.userName?.message}
+          error={errors.name?.message}
         ></Input>
         <Textarea
-          {...register("userDescription", {
+          {...register("description", {
             required: {
               value: true,
               message: "Поле обязательно для заполнения",
             },
           })}
-          error={errors.userDescription?.message}
+          error={errors.description?.message}
           placeholder="Описание"
           label="Описание"
           textareaRows={5}

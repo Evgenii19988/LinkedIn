@@ -2,20 +2,21 @@ import React, { useRef } from "react";
 import { NewPostFormProps } from "./model/types";
 import { Modal, Input, Textarea, Upload, Button } from "../../shared/ui";
 import { useForm } from "react-hook-form";
+import { Post } from "../../shared/model/types/posts.types";
 
 const NewPostForm = (props: NewPostFormProps) => {
   const { isShow, setIsShow } = props;
-  const defaultSetPostForm = {
-    postName: "",
-    postText: "",
-    postFile: null,
+  const defaultSetPostForm: Post = {
+    name: "",
+    text: "",
+    file: null,
   };
   const {
     watch,
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<Post>({
     defaultValues: defaultSetPostForm,
   });
 
@@ -23,7 +24,7 @@ const NewPostForm = (props: NewPostFormProps) => {
     <Modal value={isShow} setValue={setIsShow}>
       <div className="flex gap-[25px] flex-col">
         <Input
-          {...register("postName", {
+          {...register("name", {
             required: {
               value: true,
               message: "Поле обязательно для заполнения",
@@ -31,16 +32,16 @@ const NewPostForm = (props: NewPostFormProps) => {
           })}
           placeholder="Наименование поста"
           label="Наименование поста"
-          error={errors.postName?.message}
+          error={errors.name?.message}
         ></Input>
         <Textarea
-          {...register("postText", {
+          {...register("text", {
             required: {
               value: true,
               message: "Поле обязательно для заполнения",
             },
           })}
-          error={errors.postText?.message}
+          error={errors.text?.message}
           placeholder="Введите текст"
           label="Текст поста"
           textareaRows={5}

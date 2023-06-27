@@ -1,7 +1,10 @@
 import { createServer, Model } from "miragejs";
 
-export function makeServer({ environment = "test" } = {}) {
+export function makeServer() {
   let server = createServer({
+    models: {
+      posts: Model,
+    },
     routes() {
       this.namespace = "api/v1";
 
@@ -32,11 +35,19 @@ export function makeServer({ environment = "test" } = {}) {
         },
       }));
       this.post("/me", (schema, request) => {
-        console.log(schema, request);
         let attrs = JSON.parse(request.requestBody);
 
-        return { reminder: attrs };
+        return { data: attrs };
       });
+    },
+    seeds(server) {
+      server.create("post", { name: "Inception", text: "2010", file: "dsada" });
+      server.create("post", {
+        name: "Interstellar",
+        text: "2010",
+        file: "dsada",
+      });
+      server.create("post", { name: "Dunkirk", text: "2010", file: "dsada" });
     },
   });
 
