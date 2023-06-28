@@ -1,10 +1,12 @@
 import React, { FC } from "react";
-import Icon from "../../../shared/icons";
-import { Avatar } from "../../../shared/ui";
-import { IconName } from "../../../shared/icons/model/icon.types";
-import CommentInput from "../../../entities/comment-input";
+import Icon from "../../shared/icons";
+import { Avatar } from "../../shared/ui";
+import { IconName } from "../../shared/icons/model/icon.types";
+import CommentInput from "../../entities/comment-input";
+import { PostProps } from "./model/post.types";
 
-const Post: FC = () => {
+const Post: FC<PostProps> = (props) => {
+  const { text, name, file } = props;
   const menuItem = (iconName: IconName, text: string, color = "") => {
     return (
       <div className="flex gap-[5px] items-center text-mainBlack cursor-pointer">
@@ -27,7 +29,7 @@ const Post: FC = () => {
             ></Avatar>
           </div>
           <div className="flex flex-col gap-[5px] ml-[4px]">
-            <h3 className="text-sm font-medium">Julia Robert</h3>
+            <h3 className="text-sm font-medium">{name}</h3>
             <span>Product Designer at lancar.id</span>
             <span>1 hr ago</span>
           </div>
@@ -36,9 +38,7 @@ const Post: FC = () => {
           <Icon iconName="MoreVertical"></Icon>
         </div>
       </div>
-      <p className="mt-[20px]">
-        Challenge Application about food and Coffe Restaurant
-      </p>
+      <p className="mt-[20px]">{text}</p>
       <div className="flex justify-end">
         <span className="cursor-pointer mt-[15px] text-darkGreen font-medium">
           More Article

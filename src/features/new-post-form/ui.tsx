@@ -1,18 +1,27 @@
 import React, { useRef } from "react";
 import { NewPostFormProps } from "./model/types";
-import { Modal, Input, Textarea, Upload, Button } from "../../shared/ui";
+import {
+  Modal,
+  Input,
+  Textarea,
+  Upload,
+  Button,
+  Loading,
+} from "../../shared/ui";
 import { useForm } from "react-hook-form";
 import { Post } from "../../shared/model/types/posts.types";
+import { AddPostMutation } from "./model/add-post-mutation";
 
 const NewPostForm = (props: NewPostFormProps) => {
-  const { isShow, setIsShow } = props;
-  const defaultSetPostForm: Post = {
+  const { isShow, setIsShow, addPost, isLoadingAddPost } = props;
+  const defaultSetPostForm: Omit<Post, "id"> = {
     name: "",
     text: "",
     file: null,
   };
   const {
     watch,
+    getValues,
     register,
     handleSubmit,
     formState: { errors },
@@ -20,8 +29,18 @@ const NewPostForm = (props: NewPostFormProps) => {
     defaultValues: defaultSetPostForm,
   });
 
+  function handleAddPost() {
+    const { text, name } = getValues();
+    addPost({ text, name })
+      .unwrap()
+      .then(() => {
+        setIsShow(false);
+      });
+  }
+
   return (
     <Modal value={isShow} setValue={setIsShow}>
+      {isLoadingAddPost && <Loading></Loading>}
       <div className="flex gap-[25px] flex-col">
         <Input
           {...register("name", {
@@ -49,7 +68,7 @@ const NewPostForm = (props: NewPostFormProps) => {
         <Upload></Upload>
         <div className="flex justify-center">
           <Button
-            onClick={handleSubmit(() => console.log(errors))}
+            onClick={handleSubmit(handleAddPost)}
             label="Создать"
           ></Button>
         </div>

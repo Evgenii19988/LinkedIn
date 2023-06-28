@@ -1,4 +1,5 @@
 import { createServer, Model } from "miragejs";
+import v4 from "react-uuid";
 
 export function makeServer() {
   let server = createServer({
@@ -34,6 +35,14 @@ export function makeServer() {
           description: "I have experince 1 year UI/UX Design",
         },
       }));
+      this.get("/posts", (schema, request) => {
+        return schema.posts.all();
+      });
+      this.post("/posts", (schema, request) => {
+        let attrs = JSON.parse(request.requestBody);
+
+        return schema.posts.create(attrs);
+      });
       this.post("/me", (schema, request) => {
         let attrs = JSON.parse(request.requestBody);
 
