@@ -11,20 +11,4 @@ import { Post } from "../../../shared/model/types/posts.types";
 export type NewPostFormProps = {
   isShow: boolean;
   setIsShow: Dispatch<SetStateAction<boolean>>;
-  addPost: MutationTrigger<
-    MutationDefinition<
-      Partial<Post>,
-      BaseQueryFn<
-        string | FetchArgs,
-        unknown,
-        FetchBaseQueryError,
-        {},
-        FetchBaseQueryMeta
-      >,
-      never,
-      Post,
-      "posts-api"
-    >
-  >;
-  isLoadingAddPost: boolean;
 };

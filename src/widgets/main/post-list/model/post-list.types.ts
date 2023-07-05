@@ -1,3 +1,1 @@
-export type PostListProps = {
-    isLoadingAddPost: boolean
-}
+export type PostListProps = {};

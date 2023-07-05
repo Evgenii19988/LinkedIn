@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { NewPostFormProps } from "./model/types";
 import {
   Modal,
@@ -10,15 +10,17 @@ import {
 } from "../../shared/ui";
 import { useForm } from "react-hook-form";
 import { Post } from "../../shared/model/types/posts.types";
+import { useAppSelector } from "../../shared/hooks/use-app-selector";
 import { AddPostMutation } from "./model/add-post-mutation";
 
 const NewPostForm = (props: NewPostFormProps) => {
-  const { isShow, setIsShow, addPost, isLoadingAddPost } = props;
-  const defaultSetPostForm: Omit<Post, "id"> = {
+  const { isShow, setIsShow } = props;
+  const defaultSetPostForm: Pick<Post, "name" | "text" | "file"> = {
     name: "",
     text: "",
     file: null,
   };
+  const { user } = useAppSelector((state) => state.authSlice);
   const {
     watch,
     getValues,
@@ -28,10 +30,10 @@ const NewPostForm = (props: NewPostFormProps) => {
   } = useForm<Post>({
     defaultValues: defaultSetPostForm,
   });
+  const { addPost, isLoading: isLoadingAddPost } = AddPostMutation();
 
-  function handleAddPost() {
-    const { text, name } = getValues();
-    addPost({ text, name })
+  function handleAddPost(data: Omit<Post, "id">) {
+    addPost({ ...data, autor: user })
       .unwrap()
       .then(() => {
         setIsShow(false);

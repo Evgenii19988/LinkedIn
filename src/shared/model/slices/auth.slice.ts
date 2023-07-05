@@ -4,6 +4,7 @@ const initialState = {
   user: {
     name: "",
     description: "",
+    image: "",
   },
 };
 

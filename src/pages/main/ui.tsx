@@ -8,11 +8,9 @@ import { CorporationMenu } from "../../widgets/main/corporation-menu";
 import { StartPost } from "../../widgets/main/start-post";
 import { NewPostForm } from "../../features/new-post-form";
 import { PostList } from "../../widgets/main/post-list";
-import { AddPostMutation } from "../../features/new-post-form/model/add-post-mutation";
 
 const MainPage: FC = () => {
   const [isShow, setIsShow] = useState(false);
-  const { addPost, isLoading: isLoadingAddPost } = AddPostMutation();
 
   return (
     <div className="flex gap-[29px]">
@@ -23,19 +21,14 @@ const MainPage: FC = () => {
       <div className="w-full">
         <FriendSlider />
         <StartPost setValue={setIsShow} />
-        <PostList isLoadingAddPost={isLoadingAddPost} />
+        <PostList />
       </div>
       <div className="flex flex-col gap-[21px] w-[292px]">
         <FriendsBlock />
         <CoursesPopuler />
         <CorporationMenu />
       </div>
-      <NewPostForm
-        isShow={isShow}
-        setIsShow={setIsShow}
-        addPost={addPost}
-        isLoadingAddPost={isLoadingAddPost}
-      />
+      <NewPostForm isShow={isShow} setIsShow={setIsShow} />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useRef, useState } from "react";
 import Icon from "../../shared/icons";
 import { Avatar } from "../../shared/ui";
 import { IconName } from "../../shared/icons/model/icon.types";
@@ -6,7 +6,10 @@ import CommentInput from "../../entities/comment-input";
 import { PostProps } from "./model/post.types";
 
 const Post: FC<PostProps> = (props) => {
-  const { text, name, file } = props;
+  const { post } = props;
+  const ref = useRef<HTMLDivElement>(null);
+  const textHeight = ref?.current?.scrollHeight;
+  const [isHidedText, setIsHidedText] = useState(true);
   const menuItem = (iconName: IconName, text: string, color = "") => {
     return (
       <div className="flex gap-[5px] items-center text-mainBlack cursor-pointer">
@@ -29,8 +32,8 @@ const Post: FC<PostProps> = (props) => {
             ></Avatar>
           </div>
           <div className="flex flex-col gap-[5px] ml-[4px]">
-            <h3 className="text-sm font-medium">{name}</h3>
-            <span>Product Designer at lancar.id</span>
+            <h3 className="text-sm font-medium">{post?.autor?.name}</h3>
+            <span>{post?.autor?.description}</span>
             <span>1 hr ago</span>
           </div>
         </div>
@@ -38,21 +41,32 @@ const Post: FC<PostProps> = (props) => {
           <Icon iconName="MoreVertical"></Icon>
         </div>
       </div>
-      <p className="mt-[20px]">{text}</p>
-      <div className="flex justify-end">
-        <span className="cursor-pointer mt-[15px] text-darkGreen font-medium">
-          More Article
-        </span>
-      </div>
-      <div className="mt-[5px]">
-        <span>See translate</span>
-      </div>
+      <p className="mt-[20px] font-medium">{post.name}</p>
       <div className="w-full h-[227px] mt-[5px]">
         <img
           className="w-full h-[227px] object-cover"
           src="https://s0.rbk.ru/v6_top_pics/resized/590xH/media/img/7/65/755540270893657.jpg"
           alt=""
         />
+      </div>
+      <div
+        style={{
+          maxHeight: isHidedText ? "32px" : `${textHeight}px`,
+        }}
+        ref={ref}
+        className={`mt-[5px] overflow-hidden transition-all ${
+          isHidedText && `line-clamp-2`
+        }`}
+      >
+        {post.text}
+      </div>
+      <div className="flex justify-end">
+        <span
+          onClick={() => setIsHidedText(!isHidedText)}
+          className="cursor-pointer mt-[15px] text-darkGreen font-medium"
+        >
+          More Article
+        </span>
       </div>
       <div className="flex justify-around mt-[12px]">
         {menuItem("Like", "Like")}
