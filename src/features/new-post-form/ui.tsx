@@ -1,5 +1,5 @@
-import React from "react";
-import { NewPostFormProps } from "./model/types";
+import React, { useEffect } from "react";
+import { PostFormProps } from "./model/types";
 import {
   Modal,
   Input,
@@ -12,9 +12,11 @@ import { useForm } from "react-hook-form";
 import { Post } from "../../shared/model/types/posts.types";
 import { useAppSelector } from "../../shared/hooks/use-app-selector";
 import { AddPostMutation } from "./model/add-post-mutation";
+import { UpdatePostMutation } from "./model/edit-post-mutation";
 
-const NewPostForm = (props: NewPostFormProps) => {
-  const { isShow, setIsShow } = props;
+const PostForm = (props: PostFormProps) => {
+  const { isShow, setIsShow, type = "new", post } = props;
+  const isEdit = type === "edit";
   const defaultSetPostForm: Pick<Post, "name" | "text" | "file"> = {
     name: "",
     text: "",
@@ -27,10 +29,17 @@ const NewPostForm = (props: NewPostFormProps) => {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm<Post>({
     defaultValues: defaultSetPostForm,
   });
   const { addPost, isLoading: isLoadingAddPost } = AddPostMutation();
+  const { updatePost, isLoading: isLoadingUpdatePost } = UpdatePostMutation();
+  useEffect(() => {
+    if (!post) return;
+    setValue("name", post?.name || "");
+    setValue("text", post?.text || "");
+  }, [post?.id]);
 
   function handleAddPost(data: Omit<Post, "id">) {
     addPost({ ...data, autor: user })
@@ -40,9 +49,18 @@ const NewPostForm = (props: NewPostFormProps) => {
       });
   }
 
+  function handleUpdatePost(data: Omit<Post, "id">) {
+    if (!post?.id) return;
+    updatePost({ id: Number(post?.id), post: { ...data, autor: user } })
+      .unwrap()
+      .then(() => {
+        setIsShow(false);
+      });
+  }
+
   return (
     <Modal value={isShow} setValue={setIsShow}>
-      {isLoadingAddPost && <Loading></Loading>}
+      {(isLoadingAddPost || isLoadingUpdatePost) && <Loading />}
       <div className="flex gap-[25px] flex-col">
         <Input
           {...register("name", {
@@ -70,8 +88,8 @@ const NewPostForm = (props: NewPostFormProps) => {
         <Upload></Upload>
         <div className="flex justify-center">
           <Button
-            onClick={handleSubmit(handleAddPost)}
-            label="Создать"
+            onClick={handleSubmit(isEdit ? handleUpdatePost : handleAddPost)}
+            label={isEdit ? "Редактировать" : "Создать"}
           ></Button>
         </div>
       </div>
@@ -79,4 +97,4 @@ const NewPostForm = (props: NewPostFormProps) => {
   );
 };
 
-export default NewPostForm;
+export default PostForm;

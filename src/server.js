@@ -43,6 +43,13 @@ export function makeServer() {
 
         return schema.posts.create(attrs);
       });
+      this.patch("/posts/:id", (schema, request) => {
+        let newAttrs = JSON.parse(request.requestBody);
+        let id = request.params.id;
+        let posts = schema.posts.find(id);
+
+        return posts.update(newAttrs);
+      });
       this.post("/me", (schema, request) => {
         let attrs = JSON.parse(request.requestBody);
 

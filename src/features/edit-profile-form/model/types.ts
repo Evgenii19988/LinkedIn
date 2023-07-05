@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-export type NewPostFormProps = {
+export type PostFormProps = {
   isShow: boolean;
   setIsShow: Dispatch<SetStateAction<boolean>>;
 };

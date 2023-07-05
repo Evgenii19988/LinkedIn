@@ -6,12 +6,9 @@ import { CoursesPopuler } from "../../widgets/main/courses-populer";
 import { FriendSlider } from "../../features/friend-slider";
 import { CorporationMenu } from "../../widgets/main/corporation-menu";
 import { StartPost } from "../../widgets/main/start-post";
-import { NewPostForm } from "../../features/new-post-form";
 import { PostList } from "../../widgets/main/post-list";
 
 const MainPage: FC = () => {
-  const [isShow, setIsShow] = useState(false);
-
   return (
     <div className="flex gap-[29px]">
       <div className="flex flex-col gap-[21px] w-[292px]">
@@ -20,7 +17,7 @@ const MainPage: FC = () => {
       </div>
       <div className="w-full">
         <FriendSlider />
-        <StartPost setValue={setIsShow} />
+        <StartPost />
         <PostList />
       </div>
       <div className="flex flex-col gap-[21px] w-[292px]">
@@ -28,7 +25,6 @@ const MainPage: FC = () => {
         <CoursesPopuler />
         <CorporationMenu />
       </div>
-      <NewPostForm isShow={isShow} setIsShow={setIsShow} />
     </div>
   );
 };

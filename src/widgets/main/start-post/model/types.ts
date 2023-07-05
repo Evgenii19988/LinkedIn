@@ -1,3 +1,1 @@
-export type StartPostProps = {
-  setValue: (value: boolean) => void;
-};
+export type StartPostProps = {};

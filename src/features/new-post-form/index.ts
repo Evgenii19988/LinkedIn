@@ -1,2 +1,2 @@
-import NewPostForm from "./ui";
-export { NewPostForm };
+import PostForm from "./ui";
+export { PostForm };

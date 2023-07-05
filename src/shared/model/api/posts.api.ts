@@ -21,7 +21,18 @@ export const postsApi = createApi({
       },
       invalidatesTags: ["Posts"],
     }),
+    updatePost: build.mutation<Post, { id: number; post: Partial<Post> }>({
+      query({ id, post }) {
+        return {
+          url: `/posts/${id}`,
+          method: "PATCH",
+          body: post,
+        };
+      },
+      invalidatesTags: ["Posts"],
+    }),
   }),
 });
 
-export const { useGetPostsQuery, useAddPostMutation } = postsApi;
+export const { useGetPostsQuery, useAddPostMutation, useUpdatePostMutation } =
+  postsApi;

@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { NewPostFormProps } from "./model/types";
+import { PostFormProps } from "./model/types";
 import { Modal, Input, Textarea, Upload, Button } from "../../shared/ui";
 import { useAppDispatch } from "../../shared/hooks/use-app-dispatch";
 import { useAppSelector } from "../../shared/hooks/use-app-selector";
@@ -8,7 +8,7 @@ import { authActions } from "../../shared/model/slices/auth.slice";
 import { ChangeMeMutation } from "./model/change-me-mutation";
 import { User } from "../../shared/model/types/users.types";
 
-const EditProfileForm = (props: NewPostFormProps) => {
+const EditProfileForm = (props: PostFormProps) => {
   const { isShow, setIsShow } = props;
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.authSlice);
