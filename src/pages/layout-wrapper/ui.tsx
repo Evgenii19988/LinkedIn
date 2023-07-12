@@ -18,8 +18,10 @@ const LayoutWrapper: FC = () => {
   const { user } = useAppSelector((state) => state.authSlice);
   useEffect(() => {
     if (!isFetching) {
-      dispatch(authActions.setUserName(data?.name));
+      dispatch(authActions.setUserFirstName(data?.firstName));
+      dispatch(authActions.setUserLastName(data?.lastName));
       dispatch(authActions.setUserDescription(data?.description));
+      dispatch(authActions.setUserImage(data?.image));
     }
   }, [isFetching]);
 
@@ -47,9 +49,11 @@ const LayoutWrapper: FC = () => {
             <Avatar
               borderSize={3}
               imageSize={40}
-              image="images/WawanPurwanto.png"
+              image={user.image}
             />
-            <p className="text-sm font-medium">{user.name}</p>
+            <p className="text-sm font-medium">
+              {user.firstName + " " + user.lastName}
+            </p>
             <div className="flex items-center">
               <div className="relative profile-active">
                 <div

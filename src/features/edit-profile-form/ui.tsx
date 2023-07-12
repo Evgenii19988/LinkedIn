@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { PostFormProps } from "./model/types";
 import { Modal, Input, Textarea, Upload, Button } from "../../shared/ui";
@@ -7,6 +7,7 @@ import { useAppSelector } from "../../shared/hooks/use-app-selector";
 import { authActions } from "../../shared/model/slices/auth.slice";
 import { ChangeMeMutation } from "./model/change-me-mutation";
 import { User } from "../../shared/model/types/users.types";
+import { useUpdateUserMutation } from "../../shared/model/api/users.api";
 
 const EditProfileForm = (props: PostFormProps) => {
   const { isShow, setIsShow } = props;
@@ -14,27 +15,29 @@ const EditProfileForm = (props: PostFormProps) => {
   const { user } = useAppSelector((state) => state.authSlice);
   const { changeMe } = ChangeMeMutation();
   const defaultSetPostForm = {
-    name: user.name,
+    firstName: user.firstName,
+    lastName: user.lastName,
     description: user.description,
-    image: "",
+    file: "",
   };
+  const [updateUser, { isLoading }] = useUpdateUserMutation();
   const {
     watch,
+    setValue,
     register,
     handleSubmit,
     formState: { errors },
-    getValues,
   } = useForm({
     defaultValues: defaultSetPostForm,
   });
 
-  function saveUserProfileData(savedUserData: User) {
+  function saveUserProfileData(savedUserData: any) {
     setIsShow(false);
-    changeMe(savedUserData)
+    updateUser({ id: savedUserData.id, user: savedUserData })
       .unwrap()
       .then((res) => {
-        dispatch(authActions.setUserName(res.data.name));
-        dispatch(authActions.setUserDescription(res.data.description));
+        dispatch(authActions.setUserFirstName(res.firstName));
+        dispatch(authActions.setUserDescription(res.description));
       });
   }
 
@@ -42,7 +45,7 @@ const EditProfileForm = (props: PostFormProps) => {
     <Modal value={isShow} setValue={setIsShow}>
       <div className="flex gap-[25px] flex-col">
         <Input
-          {...register("name", {
+          {...register("firstName", {
             required: {
               value: true,
               message: "Поле обязательно для заполнения",
@@ -50,7 +53,7 @@ const EditProfileForm = (props: PostFormProps) => {
           })}
           placeholder="Имя"
           label="Имя"
-          error={errors.name?.message}
+          error={errors.firstName?.message}
         ></Input>
         <Textarea
           {...register("description", {
@@ -64,7 +67,7 @@ const EditProfileForm = (props: PostFormProps) => {
           label="Описание"
           textareaRows={5}
         ></Textarea>
-        <Upload></Upload>
+        <Upload file={watch().file || ""} setFile={setValue}></Upload>
         <div className="flex justify-center">
           <Button
             onClick={handleSubmit(saveUserProfileData)}

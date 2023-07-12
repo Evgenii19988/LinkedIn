@@ -6,7 +6,11 @@ const Avatar: FC<AvatarProps> = (props) => {
 
   return (
     <div
-      style={{ padding: `${borderSize}px`, backgroundColor: `${borderColor}` }}
+      style={{
+        padding: `${borderSize}px`,
+        backgroundColor: `${borderColor}`,
+        minHeight: `${imageSize}px`,
+      }}
       className={`rounded-full`}
     >
       <img

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { PostFormProps } from "./model/types";
 import {
   Modal,
@@ -42,7 +42,7 @@ const PostForm = (props: PostFormProps) => {
   }, [post?.id]);
 
   function handleAddPost(data: Omit<Post, "id">) {
-    addPost({ ...data, autor: user })
+    addPost({ ...data, author: user })
       .unwrap()
       .then(() => {
         setIsShow(false);
@@ -51,7 +51,7 @@ const PostForm = (props: PostFormProps) => {
 
   function handleUpdatePost(data: Omit<Post, "id">) {
     if (!post?.id) return;
-    updatePost({ id: Number(post?.id), post: { ...data, autor: user } })
+    updatePost({ id: Number(post?.id), post: { ...data, author: user } })
       .unwrap()
       .then(() => {
         setIsShow(false);
@@ -85,7 +85,7 @@ const PostForm = (props: PostFormProps) => {
           label="Текст поста"
           textareaRows={5}
         ></Textarea>
-        <Upload></Upload>
+        <Upload file={watch().file || ""} setFile={setValue}></Upload>
         <div className="flex justify-center">
           <Button
             onClick={handleSubmit(isEdit ? handleUpdatePost : handleAddPost)}

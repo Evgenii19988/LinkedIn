@@ -39,12 +39,14 @@ const Post: FC<PostProps> = (props) => {
                 borderSize={0}
                 imageSize={60}
                 borderColor="none"
-                image="images/Julie.png"
+                image={post.author.image}
               ></Avatar>
             </div>
             <div className="flex flex-col gap-[5px] ml-[4px]">
-              <h3 className="text-sm font-medium">{post?.autor?.name}</h3>
-              <span>{post?.autor?.description}</span>
+              <h3 className="text-sm font-medium">
+                {post?.author?.firstName + " " + post?.author?.lastName}
+              </h3>
+              <span>{post?.author?.description}</span>
               <span>1 hr ago</span>
             </div>
           </div>
@@ -56,7 +58,7 @@ const Post: FC<PostProps> = (props) => {
         <div className="w-full h-[227px] mt-[5px]">
           <img
             className="w-full h-[227px] object-cover"
-            src="https://s0.rbk.ru/v6_top_pics/resized/590xH/media/img/7/65/755540270893657.jpg"
+            src={String(post.file) || ""}
             alt=""
           />
         </div>
@@ -71,13 +73,21 @@ const Post: FC<PostProps> = (props) => {
         >
           {post.text}
         </div>
-        <div className="flex justify-end">
-          <span
-            onClick={() => setIsHidedText(!isHidedText)}
-            className="cursor-pointer mt-[15px] text-darkGreen font-medium"
+        <div
+          onClick={() => setIsHidedText(!isHidedText)}
+          className="flex justify-end mt-[15px] gap-[5px] cursor-pointer"
+        >
+          <div
+            className={`flex items-center justify-center ${
+              isHidedText ? "" : "rotate-180"
+            }`}
           >
-            More Article
-          </span>
+            <Icon
+              color="rgb(39 174 96 / var(--tw-text-opacity))"
+              iconName="ArrowBottom"
+            ></Icon>
+          </div>
+          <span className="text-darkGreen font-medium">More Article</span>
         </div>
         <div className="flex justify-around mt-[12px]">
           {menuItem("Like", "Like")}

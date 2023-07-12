@@ -32,7 +32,7 @@ export default function App() {
         navigation={true}
         virtual
       >
-        {data?.data?.map((user: User, index: number) => (
+        {data?.users?.map((user: User, index: number) => (
           <SwiperSlide
             className="flex flex-col"
             key={index}
@@ -44,7 +44,7 @@ export default function App() {
               borderColor="rgba(52, 86, 255, 0.5)"
               image={user.image}
             ></Avatar>
-            {user.name}
+            {user.firstName}
           </SwiperSlide>
         ))}
       </Swiper>

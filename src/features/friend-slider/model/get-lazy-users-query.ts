@@ -1,7 +1,7 @@
-import { useLazyGetUserQuery } from "../../../shared/model/api/users.api";
+import { useLazyGetUsersQuery } from "../../../shared/model/api/users.api";
 
 const GetLazyUsersQuery = () => {
-  const [getUsers, data] = useLazyGetUserQuery();
+  const [getUsers, data] = useLazyGetUsersQuery();
 
   return {
     getUsers,

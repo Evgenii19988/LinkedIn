@@ -14,13 +14,13 @@ const Profile: FC = () => {
             borderSize={6}
             imageSize={90}
             borderColor={"#F8F8FA"}
-            image="images/WawanPurwanto.png"
+            image={user?.image}
           />
         </div>
       </div>
       <div className="bg-white rounded-b-[32px]">
         <h3 className="text-center text-sm font-medium pt-[46px]">
-          {user.name}
+          {user.firstName + " " + user.lastName}
         </h3>
         <p className="text-xs text-center mt-[10px] font-Roboto text-opacityBlack">
           {" "}

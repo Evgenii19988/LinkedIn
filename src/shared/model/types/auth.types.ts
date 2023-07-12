@@ -1,4 +1,6 @@
 export type Me = {
-  name: string;
+  firstName: string;
+  lastName: string;
   description: string;
+  image: string | ArrayBuffer
 };
