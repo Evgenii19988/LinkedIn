@@ -10,15 +10,12 @@ const Avatar: FC<AvatarProps> = (props) => {
         padding: `${borderSize}px`,
         backgroundColor: `${borderColor}`,
         minHeight: `${imageSize}px`,
+        minWidth: `${imageSize}px`,
+        maxHeight: `${imageSize + borderSize * 2}px`,
       }}
       className={`rounded-full`}
     >
-      <img
-        style={{ width: `${imageSize}px` }}
-        className={`w-[${imageSize}px]`}
-        src={image}
-        alt=""
-      />
+      <img style={{ width: `${imageSize}px`, height: `${imageSize}px` }} src={image as string} alt="" />
     </div>
   );
 };

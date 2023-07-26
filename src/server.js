@@ -31,16 +31,24 @@ export function makeServer() {
       //   { timing: 1000 }
       // );
       this.get("/users", (schema, request) => {
-        return schema.users.all();
+        let users = schema.users.all().models.map((item) => {
+          delete item.attrs.password;
+          delete item.attrs.login;
+          return item.attrs;
+        });
+        return { users };
       });
-      this.get("/me", () => ({
-        data: {
-          firstName: "Wawan",
-          lastName: "Purwanto",
-          description: "I have experince 1 year UI/UX Design",
-          image: "images/WawanPurwanto.png",
-        },
-      }));
+      this.post("/login", (schema, request) => {
+        let attrs = JSON.parse(request.requestBody);
+        const users = schema.users.all().models.map((item) => {
+          return item.attrs;
+        });
+        const findedUser = users.find((user) => user.login === attrs.login);
+        if (findedUser?.password === attrs.password) {
+          return findedUser
+        }
+        return null;
+      });
       this.get("/posts", (schema, request) => {
         return schema.posts.all();
       });
@@ -86,7 +94,7 @@ export function makeServer() {
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         file: "https://s0.rbk.ru/v6_top_pics/resized/590xH/media/img/7/65/755540270893657.jpg",
         author: {
-          firstName: "Julia",
+          firstName: "Julia1",
           lastName: "Robert",
           description: "Product Designer at lancar.id",
           image: "images/Julie.png",
@@ -97,24 +105,26 @@ export function makeServer() {
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         file: "https://s0.rbk.ru/v6_top_pics/resized/590xH/media/img/7/65/755540270893657.jpg",
         author: {
-          firstName: "Julia",
+          firstName: "Julia2",
           lastName: "Robert",
           description: "Product Designer at lancar.id",
           image: "images/Wendy.png",
         },
       });
       server.create("user", {
-        firstName: "Wawan",
+        firstName: "Wawan2",
         lastName: "Purwanto",
         description: "I have experince 1 year UI/UX Design",
         image: "images/WawanPurwanto.png",
+        login: "user1",
         password: "111",
       });
       server.create("user", {
-        firstName: "Julia",
+        firstName: "Juli3",
         lastName: "Robert",
         description: "I have experince 1 year UI/UX Design",
         image: "images/Julie.png",
+        login: "user2",
         password: "222",
       });
       server.create("user", {
@@ -122,6 +132,7 @@ export function makeServer() {
         lastName: "Robert",
         description: "I have experince 1 year UI/UX Design",
         image: "images/Leslie.png",
+        login: "user3",
         password: "222",
       });
       server.create("user", {
@@ -129,6 +140,7 @@ export function makeServer() {
         lastName: "Robert",
         description: "I have experince 1 year UI/UX Design",
         image: "images/Marvin.png",
+        login: "user4",
         password: "222",
       });
       server.create("user", {
@@ -136,6 +148,7 @@ export function makeServer() {
         lastName: "Robert",
         description: "I have experince 1 year UI/UX Design",
         image: "images/Randall.png",
+        login: "user5",
         password: "222",
       });
       server.create("user", {
@@ -143,6 +156,7 @@ export function makeServer() {
         lastName: "Robert",
         description: "I have experince 1 year UI/UX Design",
         image: "images/Shane.png",
+        login: "user6",
         password: "222",
       });
       server.create("user", {
@@ -150,20 +164,23 @@ export function makeServer() {
         lastName: "Robert",
         description: "I have experince 1 year UI/UX Design",
         image: "images/Wendy.png",
+        login: "user7",
         password: "222",
       });
       server.create("user", {
-        firstName: "Philip",
+        firstName: "Philip2",
         lastName: "Robert",
         description: "I have experince 1 year UI/UX Design",
         image: "images/Philip.png",
+        login: "user8",
         password: "222",
       });
       server.create("user", {
-        firstName: "Philip",
+        firstName: "Philip3",
         lastName: "Robert",
         description: "I have experince 1 year UI/UX Design",
         image: "images/Philip.png",
+        login: "user9",
         password: "222",
       });
       server.create("user", {
@@ -171,6 +188,7 @@ export function makeServer() {
         lastName: "Robert",
         description: "I have experince 1 year UI/UX Design",
         image: "images/Wendy.png",
+        login: "user10",
         password: "222",
       });
       server.create("user", {
@@ -178,6 +196,7 @@ export function makeServer() {
         lastName: "Robert",
         description: "I have experince 1 year UI/UX Design",
         image: "images/Philip.png",
+        login: "user11",
         password: "222",
       });
       server.create("user", {
@@ -185,6 +204,7 @@ export function makeServer() {
         lastName: "Robert",
         description: "I have experince 1 year UI/UX Design",
         image: "images/Philip.png",
+        login: "user12",
         password: "222",
       });
     },

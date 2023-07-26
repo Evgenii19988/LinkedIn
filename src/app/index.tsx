@@ -6,11 +6,13 @@ import { MainPage } from "../pages/main";
 import { MessagesPage } from "../pages/messages";
 import { NotificationsPage } from "../pages/notifications";
 import { WorkPage } from "../pages/work";
+import { LoginPage } from "../pages/login";
 
 function App() {
   return (
     <div className="text-mainBlack">
       <Routes>
+        <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/" element={<LayoutWrapper />}>
           <Route path="/" element={<MainPage />} />
           <Route path="/contacts" element={<ContactsPage />} />

@@ -22,7 +22,7 @@ const Input = forwardRef(
     );
 
     return (
-      <div>
+      <div className="w-[100%]">
         {label && <span className="text-sm text-gray-500 ml-[5px]">{label}</span>}
         <div
           style={{ height: `${inputHeight}px` }}

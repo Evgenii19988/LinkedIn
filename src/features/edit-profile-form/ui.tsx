@@ -5,7 +5,6 @@ import { Modal, Input, Textarea, Upload, Button } from "../../shared/ui";
 import { useAppDispatch } from "../../shared/hooks/use-app-dispatch";
 import { useAppSelector } from "../../shared/hooks/use-app-selector";
 import { authActions } from "../../shared/model/slices/auth.slice";
-import { ChangeMeMutation } from "./model/change-me-mutation";
 import { User } from "../../shared/model/types/users.types";
 import { useUpdateUserMutation } from "../../shared/model/api/users.api";
 
@@ -13,7 +12,6 @@ const EditProfileForm = (props: PostFormProps) => {
   const { isShow, setIsShow } = props;
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.authSlice);
-  const { changeMe } = ChangeMeMutation();
   const defaultSetPostForm = {
     firstName: user.firstName,
     lastName: user.lastName,
@@ -33,7 +31,7 @@ const EditProfileForm = (props: PostFormProps) => {
 
   function saveUserProfileData(savedUserData: any) {
     setIsShow(false);
-    updateUser({ id: savedUserData.id, user: savedUserData })
+    updateUser({ id: user.id, user: savedUserData })
       .unwrap()
       .then((res) => {
         dispatch(authActions.setUserFirstName(res.firstName));
@@ -54,6 +52,17 @@ const EditProfileForm = (props: PostFormProps) => {
           placeholder="Имя"
           label="Имя"
           error={errors.firstName?.message}
+        ></Input>
+        <Input
+          {...register("lastName", {
+            required: {
+              value: true,
+              message: "Поле обязательно для заполнения",
+            },
+          })}
+          placeholder="Фамилия"
+          label="Фамилия"
+          error={errors.lastName?.message}
         ></Input>
         <Textarea
           {...register("description", {

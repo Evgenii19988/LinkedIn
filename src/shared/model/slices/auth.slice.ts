@@ -6,6 +6,7 @@ const initialState = {
     lastName: "",
     description: "",
     image: "",
+    id: ""
   },
 };
 
@@ -24,6 +25,9 @@ const authSlice = createSlice({
     },
     setUserImage: (state, { payload }) => {
       state.user.image = payload;
+    },
+    setUserId: (state, { payload }) => {
+      state.user.id = payload;
     },
   },
 });

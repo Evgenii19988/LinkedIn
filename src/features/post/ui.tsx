@@ -5,6 +5,7 @@ import { IconName } from "../../shared/icons/model/icon.types";
 import CommentInput from "../../entities/comment-input";
 import { PostProps } from "./model/post.types";
 import { PostForm } from "../new-post-form";
+import { useAppSelector } from "../../shared/hooks/use-app-selector";
 
 const Post: FC<PostProps> = (props) => {
   const { post } = props;
@@ -12,15 +13,17 @@ const Post: FC<PostProps> = (props) => {
   const textHeight = ref?.current?.scrollHeight;
   const [isHidedText, setIsHidedText] = useState(true);
   const [isShow, setIsShow] = useState(false);
+  const { user } = useAppSelector((state) => state.authSlice);
   const menuItem = (
     iconName: IconName,
     text: string,
     color = "",
-    onClick?: () => void
+    onClick?: () => void,
+    isDisabled?: boolean
   ) => {
     return (
       <div
-        onClick={onClick}
+        onClick={() => {if (!isDisabled) onClick?.()}}
         className="flex gap-[5px] items-center text-mainBlack cursor-pointer"
       >
         <Icon color={color} iconName={iconName} />
@@ -95,7 +98,7 @@ const Post: FC<PostProps> = (props) => {
           {menuItem("Bookmark", "Saved", "rgba(7, 9, 40, 0.75)")}
           {menuItem("Send", "Send", "rgba(7, 9, 40, 0.75)")}
           {menuItem("Share", "Edit", "rgba(7, 9, 40, 0.75)", () =>
-            setIsShow(true)
+            setIsShow(true), post?.author?.id !== user.id
           )}
         </div>
         <div className="flex mt-[28px]">

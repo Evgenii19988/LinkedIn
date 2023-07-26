@@ -3,4 +3,5 @@ export type Me = {
   lastName: string;
   description: string;
   image: string | ArrayBuffer
+  id?: number
 };

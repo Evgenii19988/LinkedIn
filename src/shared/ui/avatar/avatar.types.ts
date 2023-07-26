@@ -1,5 +1,5 @@
 export type AvatarProps = {
-  image: string;
+  image: string | ArrayBuffer;
   borderSize: number;
   imageSize: number;
   borderColor?: string;
