@@ -9,7 +9,7 @@ export const userApi = createApi({
       query: () => `/users`,
     }),
     updateUser: build.mutation<
-      User,
+      { users: User },
       { id: number | string; user: Partial<User> }
     >({
       query({ id, user }) {

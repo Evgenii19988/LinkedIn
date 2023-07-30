@@ -13,8 +13,6 @@ const LayoutWrapper: FC = () => {
   const [isOpenEditProfileModal, setIsOpenEditProfileModal] = useState(false);
   const { user } = useAppSelector((state) => state.authSlice);
 
-  <Navigate to={"/login"} />;
-
   return (
     <>
       {!user?.id ? (

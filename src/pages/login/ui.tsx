@@ -35,7 +35,7 @@ const LoginPage: FC = () => {
   }
   return (
     <div className="w-[100vw] h-[100vh] flex gap-[29px] relative left-0 top-0">
-      <div className="m-auto left-0 right-0 bottom-0 top-0 absolute w-[400px] h-[300px] flex flex-col items-center gap-[20px]">
+      <div className="m-auto left-0 right-0 bottom-0 top-0 absolute w-[400px] h-[300px] flex flex-col items-center gap-[30px]">
         <Input
           {...register("login", {
             required: {
@@ -56,6 +56,7 @@ const LoginPage: FC = () => {
           placeholder="Пароль"
           error={errors?.password?.message as string}
         ></Input>
+        <span className="text-red-600 text-sm">{loginError}</span>
         <Button onClick={handleSubmit(handleLogin)} label="Войти"></Button>
       </div>
     </div>

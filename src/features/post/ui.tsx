@@ -97,7 +97,7 @@ const Post: FC<PostProps> = (props) => {
           {menuItem("Comment", "Comment")}
           {menuItem("Bookmark", "Saved", "rgba(7, 9, 40, 0.75)")}
           {menuItem("Send", "Send", "rgba(7, 9, 40, 0.75)")}
-          {menuItem("Share", "Edit", "rgba(7, 9, 40, 0.75)", () =>
+          {post?.author?.id === user.id && menuItem("Share", "Edit", "rgba(7, 9, 40, 0.75)", () =>
             setIsShow(true), post?.author?.id !== user.id
           )}
         </div>

@@ -14,7 +14,7 @@ const Upload: FC<UploadProps> = (props) => {
               const fr = new FileReader();
               fr.onload = () => {
                 const fbase64 = fr.result; //файл в base64
-                setFile("file", fbase64);
+                setFile("image", fbase64);
               };
               fr.readAsDataURL(e.target.files?.[0]);
             }

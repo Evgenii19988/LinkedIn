@@ -16,7 +16,7 @@ const EditProfileForm = (props: PostFormProps) => {
     firstName: user.firstName,
     lastName: user.lastName,
     description: user.description,
-    file: "",
+    image: "",
   };
   const [updateUser, { isLoading }] = useUpdateUserMutation();
   const {
@@ -34,8 +34,10 @@ const EditProfileForm = (props: PostFormProps) => {
     updateUser({ id: user.id, user: savedUserData })
       .unwrap()
       .then((res) => {
-        dispatch(authActions.setUserFirstName(res.firstName));
-        dispatch(authActions.setUserDescription(res.description));
+        dispatch(authActions.setUserFirstName(res.users.firstName));
+        dispatch(authActions.setUserLastName(res.users.lastName));
+        dispatch(authActions.setUserDescription(res.users.description));
+        dispatch(authActions.setUserImage(res.users.image))
       });
   }
 
@@ -76,7 +78,7 @@ const EditProfileForm = (props: PostFormProps) => {
           label="Описание"
           textareaRows={5}
         ></Textarea>
-        <Upload file={watch().file || ""} setFile={setValue}></Upload>
+        <Upload file={watch().image || ""} setFile={setValue}></Upload>
         <div className="flex justify-center">
           <Button
             onClick={handleSubmit(saveUserProfileData)}
