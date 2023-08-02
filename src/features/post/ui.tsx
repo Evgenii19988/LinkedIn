@@ -23,7 +23,9 @@ const Post: FC<PostProps> = (props) => {
   ) => {
     return (
       <div
-        onClick={() => {if (!isDisabled) onClick?.()}}
+        onClick={() => {
+          if (!isDisabled) onClick?.();
+        }}
         className="flex gap-[5px] items-center text-mainBlack cursor-pointer"
       >
         <Icon color={color} iconName={iconName} />
@@ -58,13 +60,15 @@ const Post: FC<PostProps> = (props) => {
           </div>
         </div>
         <p className="mt-[20px] font-medium">{post.name}</p>
-        <div className="w-full h-[227px] mt-[5px]">
-          <img
-            className="w-full h-[227px] object-cover"
-            src={String(post.file) || ""}
-            alt=""
-          />
-        </div>
+        {post.file && (
+          <div className="w-full h-[227px] mt-[5px]">
+            <img
+              className="w-full h-[227px] object-cover"
+              src={String(post.file) || ""}
+              alt=""
+            />
+          </div>
+        )}
         <div
           style={{
             maxHeight: isHidedText ? "32px" : `${textHeight}px`,
@@ -97,9 +101,14 @@ const Post: FC<PostProps> = (props) => {
           {menuItem("Comment", "Comment")}
           {menuItem("Bookmark", "Saved", "rgba(7, 9, 40, 0.75)")}
           {menuItem("Send", "Send", "rgba(7, 9, 40, 0.75)")}
-          {post?.author?.id === user.id && menuItem("Share", "Edit", "rgba(7, 9, 40, 0.75)", () =>
-            setIsShow(true), post?.author?.id !== user.id
-          )}
+          {post?.author?.id === user.id &&
+            menuItem(
+              "Share",
+              "Edit",
+              "rgba(7, 9, 40, 0.75)",
+              () => setIsShow(true),
+              post?.author?.id !== user.id
+            )}
         </div>
         <div className="flex mt-[28px]">
           <div className="flex items-center mr-[11px]">

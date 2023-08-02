@@ -7,15 +7,32 @@ import { HeaderDropdown } from "../../features/header-dropdown";
 import { EditProfileForm } from "../../features/edit-profile-form";
 import { useAppSelector } from "../../shared/hooks/use-app-selector";
 import { Navigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../shared/model/slices/auth.slice";
+import { User } from "../../shared/model/types/users.types";
 
 const LayoutWrapper: FC = () => {
   const [isOpenDropdown, setIsOpenDropdown] = useState(false);
   const [isOpenEditProfileModal, setIsOpenEditProfileModal] = useState(false);
   const { user } = useAppSelector((state) => state.authSlice);
+  const dispatch = useDispatch();
+  let authUser: User | null = null;
+  if (sessionStorage.getItem("user")) {
+    authUser = JSON.parse(sessionStorage.getItem("user") || "");
+  }
+  useEffect(() => {
+    console.log(authUser);
+    if (!authUser) return;
+    dispatch(authActions.setUserFirstName(authUser?.firstName));
+    dispatch(authActions.setUserLastName(authUser?.lastName));
+    dispatch(authActions.setUserDescription(authUser?.description));
+    dispatch(authActions.setUserImage(authUser?.image));
+    dispatch(authActions.setUserId(authUser?.id));
+  }, []);
 
   return (
     <>
-      {!user?.id ? (
+      {!user?.id && !authUser ? (
         <Navigate to={"/login"} />
       ) : (
         <div className="flex flex-col items-center">
