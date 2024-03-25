@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { PostFormProps } from "./model/types";
 import { Modal, Input, Textarea, Upload, Button } from "../../shared/ui";
@@ -37,9 +37,16 @@ const EditProfileForm = (props: PostFormProps) => {
         dispatch(authActions.setUserFirstName(res.users.firstName));
         dispatch(authActions.setUserLastName(res.users.lastName));
         dispatch(authActions.setUserDescription(res.users.description));
-        dispatch(authActions.setUserImage(res.users.image))
+        dispatch(authActions.setUserImage(res.users.image));
       });
   }
+
+  useEffect(() => {
+    setValue("firstName", user.firstName);
+    setValue("lastName", user.lastName);
+    setValue("description", user.description);
+    setValue('image', user.image)
+  }, [user]);
 
   return (
     <Modal value={isShow} setValue={setIsShow}>

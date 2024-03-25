@@ -21,7 +21,6 @@ const LayoutWrapper: FC = () => {
     authUser = JSON.parse(sessionStorage.getItem("user") || "");
   }
   useEffect(() => {
-    console.log(authUser);
     if (!authUser) return;
     dispatch(authActions.setUserFirstName(authUser?.firstName));
     dispatch(authActions.setUserLastName(authUser?.lastName));

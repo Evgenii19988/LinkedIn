@@ -10,12 +10,15 @@ const Profile: FC = () => {
     <div className="w-[292px]">
       <div className="flex justify-center w-full bg-mainBlue h-[99px] rounded-t-[32px]">
         <div className="translate-y-[37px]">
-          <Avatar
-            borderSize={6}
-            imageSize={90}
-            borderColor={"#F8F8FA"}
-            image={user?.image}
-          />
+          <label className="cursor-pointer">
+            <Avatar
+              borderSize={6}
+              imageSize={90}
+              borderColor={"#F8F8FA"}
+              image={user?.image}
+            />
+            <input type="file" className="absolute top-[-1000px]" />
+          </label>
         </div>
       </div>
       <div className="bg-white rounded-b-[32px]">

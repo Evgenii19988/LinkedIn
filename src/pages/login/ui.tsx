@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { Button, Input } from "../../shared/ui";
+import { Button, Input, Loading } from "../../shared/ui";
 import { useLogInMutation } from "../../shared/model/api/auth.api";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
@@ -16,7 +16,7 @@ const LoginPage: FC = () => {
     watch,
   } = useForm();
   const navigate = useNavigate();
-  const [login] = useLogInMutation();
+  const [login, { isLoading }] = useLogInMutation();
   const dispatch = useDispatch();
   const [loginError, setLoginError] = useState("");
   function handleLogin() {
@@ -44,36 +44,42 @@ const LoginPage: FC = () => {
     sessionStorage.setItem("user", JSON.stringify(user));
   }
   return (
-    <div className="w-[100vw] h-[100vh] flex gap-[29px] relative left-0 top-0">
-      <div className="m-auto left-0 right-0 bottom-0 top-0 absolute w-[400px] h-[300px] flex flex-col items-center">
-        <div className="mb-[30px] w-full">
-          <Input
-            {...register("login", {
-              required: {
-                value: true,
-                message: "Поле обязательно для заполнения",
-              },
-            })}
-            placeholder="Логин"
-            error={errors?.login?.message as string}
-          ></Input>
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className="w-[100vw] h-[100vh] flex gap-[29px] relative left-0 top-0">
+          <div className="m-auto left-0 right-0 bottom-0 top-0 absolute w-[400px] h-[300px] flex flex-col items-center">
+            <div className="mb-[30px] w-full">
+              <Input
+                {...register("login", {
+                  required: {
+                    value: true,
+                    message: "Поле обязательно для заполнения",
+                  },
+                })}
+                placeholder="Логин"
+                error={errors?.login?.message as string}
+              ></Input>
+            </div>
+            <Input
+              {...register("password", {
+                required: {
+                  value: true,
+                  message: "Поле обязательно для заполнения",
+                },
+              })}
+              placeholder="Пароль"
+              error={errors?.password?.message as string}
+            ></Input>
+            <span className="text-red-600 text-sm mt-[20px] mb-[10px]">
+              {loginError}
+            </span>
+            <Button onClick={handleSubmit(handleLogin)} label="Войти"></Button>
+          </div>
         </div>
-        <Input
-          {...register("password", {
-            required: {
-              value: true,
-              message: "Поле обязательно для заполнения",
-            },
-          })}
-          placeholder="Пароль"
-          error={errors?.password?.message as string}
-        ></Input>
-        <span className="text-red-600 text-sm mt-[20px] mb-[10px]">
-          {loginError}
-        </span>
-        <Button onClick={handleSubmit(handleLogin)} label="Войти"></Button>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 
